@@ -1,0 +1,329 @@
+@import url("https://fonts.googleapis.com/css?family=Barlow:400,500,700|Open+Sans:300");
+
+/*Flex*/
+.flex {
+  display: flex;
+}
+.flex--col {
+  flex-direction: column;
+}
+.flex--horz-center {
+  justify-content: center;
+}
+.flex--between {
+  justify-content: space-between;
+}
+.flex--end {
+  justify-content: flex-end;
+}
+
+/*Header/Nav Component*/
+nav {
+  flex: 1 1 33%;
+}
+nav .user {
+  flex: 0 1 auto;
+  margin: 9px 18px 9px 9px;
+  padding: 0 18px;
+  text-align: center;
+}
+nav .user .user__name {
+  display: block;
+  font-family: "Open Sans", sans-serif;
+  font-size: 48px;
+  font-size: 4.8rem;
+  letter-spacing: -0.25rem;
+}
+nav .user .user__name.user__name--deactive {
+  opacity: 0.25;
+}
+nav .user__subnav {
+  height: 100vh;
+}
+nav .user__subnav--darkgray {
+  background-color: #cccccc;
+  flex: 2 1 auto;
+}
+nav .user__subnav--lightgray {
+  background-color: #e6e6e6;
+  flex: 4 1 auto;
+}
+nav .user__subnav.user__subnav--lightgray.lattice-dollar-sign-bg {
+  background: url("/img/criss-cross-dollar-sign-bg-pattern.svg");
+  background-repeat: repeat;
+  background-color: #e6e6e6;
+  background-size: 50%;
+  margin-left: 9px;
+}
+
+/*Jars and History Components*/
+.jars {
+  flex: 2 1 66%;
+  margin-left: 9px;
+}
+.jars > div:first-of-type {
+  margin-bottom: 9px;
+}
+.jars__row {
+  height: calc(50vh - 4.5px);
+}
+.jars__row .jar:first-child {
+  margin-right: 9px;
+}
+.jar {
+  color: white;
+  display: flex;
+  flex: 1 1 50%;
+  flex-direction: row;
+  flex-flow: wrap;
+  justify-content: center;
+  padding: 27px 18px;
+  position: relative;
+  text-align: center;
+  transform-style: preserve-3d;
+  transition: all 500ms cubic-bezier(0.65, 0, 0.4, 1);
+}
+.jar .jar__front,
+.jar .jar__back {
+  backface-visibility: hidden;
+  display: flex;
+  height: 100%;
+  flex: 1 1 50%;
+  flex-direction: row;
+  flex-flow: wrap;
+  justify-content: center;
+  padding: 27px 18px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.jar .jar__front > div:first-of-type,
+.jar .jar__back > div:first-of-type {
+  align-self: flex-start;
+  width: 100%;
+}
+.jar .jar__front {
+  transform: rotateY(0deg);
+  z-index: 2;
+}
+/*
+Jar Back
+*/
+.jar .jar__back {
+  color: #4c4c4c;
+  /* flex-flow: column;
+        justify-content: flex-start; */
+  transform: rotateY(180deg);
+}
+.jar .jar__back > div {
+  width: 100%;
+}
+.jar .jar__back > div:first-of-type {
+  margin-bottom: 18px;
+}
+.jar__back__note {
+  margin-top: 18px;
+}
+.jar__back__note:hover .input--highlight:after,
+.jar__amount__new:hover .input--highlight:after {
+  width: 100%;
+}
+.input--highlight {
+  position: relative;
+}
+.input--highlight:after {
+  content: "";
+  width: 0px;
+  height: 2px;
+  background: hotpink;
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  transition: all 400ms cubic-bezier(0, 0, 0.21, 1);
+}
+.jar__amount__new .input--highlight {
+  margin: 0 auto;
+  width: 75%;
+}
+.jar__back__note label {
+  flex: 0 1 auto;
+  margin-right: 9px;
+}
+.jar__back input {
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  color: #4c4c4c;
+  flex: 1 1 auto;
+  font-family: "Barlow", sans-serif;
+  font-size: 18px;
+  font-size: 1.8rem;
+  -webkit-appearance: none;
+}
+.jar__back input:focus {
+  outline: none;
+}
+.jar__amount__new {
+  margin-bottom: 18px;
+  width: 100%;
+}
+.jar__amount__new input {
+  font-size: 128px;
+  font-size: 12.8rem;
+  letter-spacing: -0.5rem;
+  max-width: 100%;
+  text-align: center;
+  width: max-content;
+}
+.jar__new-total {
+  margin-top: 18px;
+}
+
+.jar__text-button,
+input[type="submit"] {
+  background-color: #4a4a4a;
+  border-radius: 26px;
+  color: white;
+  cursor: pointer;
+  font-size: 27px;
+  font-size: 2.7rem;
+  font-weight: bold;
+  display: inline-block;
+  padding: 6px 36px;
+  transition: all 300ms;
+}
+.jar__text-button:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  background-color: #858585;
+}
+.jar--flip {
+  transform: rotateY(180deg);
+}
+.jar button {
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  background: none;
+  color: white;
+  margin: 0;
+  outline: none;
+  padding: 0 1.5px;
+  position: relative;
+  -webkit-appearance: none;
+}
+.jar button:hover .button__circle {
+  stroke-dashoffset: 0;
+}
+.jar button > svg {
+  position: absolute;
+  top: 0;
+  left: 1px;
+}
+.button__circle {
+  stroke-dashoffset: 1000;
+  stroke-dasharray: 1000;
+  transition: all 1500ms cubic-bezier(0.58, 0, 0.35, 0.99);
+}
+.jar button.jar__arrow_upward--rotate45deg i {
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.jar .jar__back button {
+  color: #4c4c4c;
+}
+.jar__front--save {
+  background-color: #24c3e3;
+}
+.jar__back--save {
+  background-color: rgba(36, 195, 227, 0.3);
+}
+.jar--spend {
+  background-color: #cf2b7a;
+  -webkit-clip-path: polygon(
+    0px 0px,
+    100% 0px,
+    100% 100%,
+    90% 90%,
+    80% 100%,
+    70% 90%,
+    60% 100%,
+    50% 90%,
+    40% 100%,
+    30% 90%,
+    20% 100%,
+    10% 90%,
+    0 100%
+  );
+  clip-path: polygon(
+    0px 0px,
+    100% 0px,
+    100% 100%,
+    90% 90%,
+    80% 100%,
+    70% 90%,
+    60% 100%,
+    50% 90%,
+    40% 100%,
+    30% 90%,
+    20% 100%,
+    10% 90%,
+    0 100%
+  );
+}
+.jar--share {
+  background-color: #4aa34e;
+}
+
+/*
+Log jar
+*/
+.jar__front--log {
+  background-color: #7a6358;
+  border-top-left-radius: 10%;
+}
+.jar__back--log {
+  background-color: rgba(82, 55, 33, 0.3);
+  border-top-right-radius: 10%;
+}
+.jar__back__log {
+  text-align: left;
+  height: 352px;
+  overflow-y: scroll;
+}
+.jar__back__log > div:first-of-type {
+  margin-top: 18px;
+}
+.jar__back__log__item {
+  margin-bottom: 18px;
+}
+.jar__back__log__item__details > p > span {
+  font-weight: 500;
+}
+.jar__back__log p {
+  margin: 0;
+}
+
+.jar__amount {
+  align-items: center;
+  flex: 1 1 100%;
+  letter-spacing: -0.5rem;
+}
+.jar__amount > span:first-of-type {
+  font-size: 81px;
+  font-size: 8.1rem;
+}
+.jar__amount > span:last-of-type {
+  font-size: 128px;
+  font-size: 12.8rem;
+}
+.jar__label {
+  font-size: 27px;
+  font-size: 2.7rem;
+  font-weight: bold;
+}
+.jar > div:first-of-type {
+  align-self: flex-start;
+  flex: 1 1 100%;
+}

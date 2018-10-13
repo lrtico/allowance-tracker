@@ -1,0 +1,21 @@
+/*Normalize*/
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+body {
+  color: #222;
+  font-family: "Barlow", sans-serif;
+  font-size: 18px;
+  font-size: 1.8rem;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+#root {
+  margin: 0 9px;
+}
