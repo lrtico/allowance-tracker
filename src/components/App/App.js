@@ -5,11 +5,16 @@ import MaterialIcon from "react-google-material-icons";
 class App extends Component {
   state = {
     flipJar: false,
-    flipJarLog: false,
     submitText: "Add",
     saveJarValue: "",
     saveJarTotal: 0.0,
     saveJarNote: "",
+    flipJarSpend: false,
+    submitTextJarSpend: "Add",
+    spendJarValue: "",
+    spendJarTotal: 0.0,
+    spendJarNote: "",
+    flipJarLog: false,
     log: []
   };
 
@@ -95,9 +100,94 @@ class App extends Component {
       flipJarLog: !prevState.flipJarLog
     }));
   };
+  handleAddButtonTextJarSpend = () => {
+    this.setState({
+      submitTextJarSpend: "Add"
+    });
+    this.flipJarSpend();
+  };
+  handleMinusButtonTextJarSpend = () => {
+    this.setState({
+      submitTextJarSpend: "Minus"
+    });
+    this.flipJarSpend();
+  };
+  flipJarSpend = () => {
+    console.log("Make jar flip now!");
+    this.setState(prevState => ({
+      flipJarSpend: !prevState.flipJarSpend
+    }));
+  };
+  handleSpendJarNoteChange = e => {
+    this.setState({
+      spendJarNote: e.target.value
+    });
+  };
+  handleSpendJarValueChange = e => {
+    this.setState({
+      spendJarValue: e.target.value
+    });
+  };
+  handleAddSpendJar = () => {
+    const { spendJarTotal, spendJarValue, log, spendJarNote } = this.state;
+    //Convert the input value from a string to a number
+    let x = spendJarValue - 0;
+    let newTotal = Math.round((x + spendJarTotal) * 100) / 100;
+    let firstLog = log.length;
+
+    this.setState({
+      spendJarTotal: newTotal,
+      spendJarValue: "",
+      spendJarNote: "",
+      log: [
+        ...log,
+        {
+          amount: `+${spendJarValue}`,
+          date: new Date().toDateString(),
+          jar: "Spend",
+          total: firstLog !== 0 ? newTotal : spendJarValue,
+          note: spendJarNote
+        }
+      ]
+    });
+    this.flipJarSpend();
+  };
+  handleMinusSpendJar = () => {
+    const { spendJarTotal, spendJarValue, log, spendJarNote } = this.state;
+    //Convert the input value from a string to a number
+    let x = spendJarValue - 0;
+    let newTotal = Math.round((spendJarTotal - x) * 100) / 100;
+    let firstLog = log.length;
+
+    this.setState({
+      spendJarTotal: newTotal,
+      spendJarValue: "",
+      spendJarNote: "",
+      log: [
+        ...log,
+        {
+          amount: `-${spendJarValue}`,
+          date: new Date().toDateString(),
+          jar: "Spend",
+          total: firstLog !== 0 ? newTotal : spendJarValue,
+          note: spendJarNote
+        }
+      ]
+    });
+    this.flipJarSpend();
+  };
 
   render() {
-    const { submitText, saveJarTotal, saveJarValue, saveJarNote } = this.state;
+    const {
+      submitText,
+      saveJarTotal,
+      saveJarValue,
+      saveJarNote,
+      spendJarTotal,
+      spendJarNote,
+      spendJarValue,
+      submitTextJarSpend
+    } = this.state;
     return (
       <div className="flex root">
         <nav className="flex">
@@ -215,45 +305,111 @@ class App extends Component {
                 </div>
               </div>
             </div>
-            <div className="jar jar--spend">
-              <div className="flex flex--between">
-                <button>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
-                    <circle
-                      className="button__circle"
-                      fill="none"
-                      stroke="#fff"
-                      strokeWidth="1"
-                      strokeMiterlimit="10"
-                      cx="11"
-                      cy="11"
-                      r="10"
-                    />
-                  </svg>
-                  <MaterialIcon icon="add" size={36} />
-                </button>
-                <button>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
-                    <circle
-                      className="button__circle"
-                      fill="none"
-                      stroke="#fff"
-                      strokeWidth="1"
-                      strokeMiterlimit="10"
-                      cx="11"
-                      cy="11"
-                      r="10"
-                    />
-                  </svg>
-                  <MaterialIcon icon="remove" size={36} />
-                </button>
+            <div
+              className={
+                this.state.flipJarSpend
+                  ? "jar jar--spend jar--flip"
+                  : "jar jar--spend"
+              }
+            >
+              <div className="jar__front jar__front--spend">
+                <div className="flex flex--between">
+                  <button onClick={this.handleAddButtonTextJarSpend}>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
+                      <circle
+                        className="button__circle"
+                        fill="none"
+                        stroke="#fff"
+                        strokeWidth="1"
+                        strokeMiterlimit="10"
+                        cx="11"
+                        cy="11"
+                        r="10"
+                      />
+                    </svg>
+                    <MaterialIcon icon="add" size={36} />
+                  </button>
+                  <button onClick={this.handleMinusButtonTextJarSpend}>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
+                      <circle
+                        className="button__circle"
+                        fill="none"
+                        stroke="#fff"
+                        strokeWidth="1"
+                        strokeMiterlimit="10"
+                        cx="11"
+                        cy="11"
+                        r="10"
+                      />
+                    </svg>
+                    <MaterialIcon icon="remove" size={36} />
+                  </button>
+                </div>
+                <div className="flex flex--horz-center jar__amount">
+                  <span>$</span>
+                  <span>{spendJarTotal}</span>
+                </div>
+                <div className="jar__label">
+                  <span>Spend</span>
+                </div>
               </div>
-              <div className="flex flex--horz-center jar__amount">
-                <span>$</span>
-                <span>112.75</span>
-              </div>
-              <div className="jar__label">
-                <span>Spend</span>
+              <div className="jar__back jar__back--spend">
+                <div>
+                  <div className="flex flex--between">
+                    <button onClick={this.flipJarSpend}>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 22 22"
+                      >
+                        <circle
+                          className="button__circle"
+                          fill="none"
+                          stroke="#4c4c4c"
+                          strokeWidth="1"
+                          strokeMiterlimit="10"
+                          cx="11"
+                          cy="11"
+                          r="10"
+                        />
+                      </svg>
+                      <MaterialIcon icon="close" size={36} />
+                    </button>
+                  </div>
+                  <div className="jar__back__note">
+                    <div className="flex input--highlight">
+                      <label htmlFor="">Note:</label>
+                      <input
+                        type="text"
+                        value={spendJarNote}
+                        onChange={this.handleSpendJarNoteChange}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex flex--horz-center jar__amount__new">
+                    <div className="flex flex--horz-center input--highlight">
+                      <input
+                        type="text"
+                        value={spendJarValue}
+                        onChange={this.handleSpendJarValueChange}
+                      />
+                    </div>
+                  </div>
+                  <input
+                    type="submit"
+                    value={submitTextJarSpend}
+                    onClick={
+                      submitTextJarSpend === "Add"
+                        ? this.handleAddSpendJar
+                        : this.handleMinusSpendJar
+                    }
+                  />
+                  <div className="jar__new-total">
+                    <span>Previous total: </span>
+                    <span>${spendJarTotal}</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
