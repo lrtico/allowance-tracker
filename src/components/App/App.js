@@ -44,9 +44,18 @@ class App extends Component {
     }));
   };
   handleSaveJarValueChange = e => {
-    this.setState({
-      saveJarValue: e.target.value
-    });
+    if (isNaN(e.target.value)) {
+      document
+        .getElementById("save-jar-error")
+        .classList.add("save-jar-error--active");
+    } else {
+      this.setState({
+        saveJarValue: e.target.value
+      });
+      document
+        .getElementById("save-jar-error")
+        .classList.remove("save-jar-error--active");
+    }
   };
   handleSaveJarNoteChange = e => {
     this.setState({
@@ -386,6 +395,7 @@ class App extends Component {
                     <div className="flex input--highlight">
                       <label htmlFor="">Note:</label>
                       <input
+                        maxLength="75"
                         type="text"
                         value={saveJarNote}
                         onChange={this.handleSaveJarNoteChange}
@@ -396,7 +406,11 @@ class App extends Component {
                 <div>
                   <div className="flex flex--horz-center jar__amount__new">
                     <div className="flex flex--horz-center input--highlight">
+                      <div id="save-jar-error">
+                        <p>Please enter only numbers and a decimal</p>
+                      </div>
                       <input
+                        maxLength="6"
                         type="text"
                         value={saveJarValue}
                         onChange={this.handleSaveJarValueChange}
