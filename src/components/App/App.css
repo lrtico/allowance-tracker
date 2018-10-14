@@ -21,21 +21,60 @@
 nav {
   flex: 1 1 33%;
 }
-nav .user {
+nav .users {
   flex: 0 1 auto;
   margin: 9px 18px 9px 9px;
   padding: 0 18px;
   text-align: center;
 }
-nav .user .user__name {
+nav .users .user .user__name--hover {
+  position: relative;
+}
+nav .users .user .user__name--hover:after {
+  background-color: hotpink;
+  content: "";
+  height: 3px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 0;
+  transition: all 250ms ease-in-out;
+}
+nav .users .user:hover .user__name--hover:after {
+  width: 100%;
+}
+nav .users .user#jr .user__name--hover:after {
+  background-color: orange;
+}
+nav .users .user#aj .user__name--hover:after {
+  background-color: purple;
+}
+nav .users .user__name {
+  cursor: pointer;
   display: block;
   font-family: "Open Sans", sans-serif;
   font-size: 48px;
   font-size: 4.8rem;
   letter-spacing: -0.25rem;
+  transition: color 250ms 200ms;
 }
-nav .user .user__name.user__name--deactive {
+nav .users .user:hover .user__name {
+  color: hotpink;
+}
+nav .users .user#jr:hover .user__name {
+  color: orange;
+}
+nav .users .user#aj:hover .user__name {
+  color: purple;
+}
+nav .users .user__name.user__name--deactive {
+  cursor: default;
   opacity: 0.18;
+  transition: all 500ms;
+}
+nav .users .user:hover .user__name.user__name--deactive {
+  cursor: pointer;
+  opacity: 1;
 }
 nav .user__subnav {
   height: 100vh;
@@ -268,8 +307,6 @@ input[type="submit"] {
 /*
 Spend jar
 */
-.jar--spend {
-}
 .jar__front--spend {
   background-color: #cf2b7a;
   -webkit-clip-path: polygon(
@@ -310,8 +347,11 @@ Spend jar
 /*
 Share jar
 */
-.jar--share {
+.jar__front--share {
   background-color: #4aa34e;
+}
+.jar__back--share {
+  background-color: rgba(74, 163, 78, 0.3);
 }
 
 /*
@@ -341,4 +381,43 @@ Log jar
 }
 .jar__back__log p {
   margin: 0;
+}
+
+/*
+Page transition
+*/
+#page-trans {
+  background-color: #f0c91d;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  transform: scaleX(0);
+  -webkit-transition: all 500ms cubic-bezier(0.61, 0.31, 0.04, 1.18);
+  -o-transition: all 500ms cubic-bezier(0.61, 0.31, 0.04, 1.18);
+  transition: all 500ms cubic-bezier(0.61, 0.31, 0.04, 1.18);
+}
+.menu-open #page-trans {
+  animation: page-wipe 2000ms forwards cubic-bezier(0.79, 0, 0.27, 0.99);
+}
+
+@keyframes page-wipe {
+  0% {
+    transform-origin: left 50% 0px;
+    transform: translate3d(0px, 0px, 0px) scale(0, 1);
+  }
+  50% {
+    transform-origin: left 50% 0px;
+    transform: translate3d(0px, 0px, 0px) scale(1, 1);
+  }
+  51% {
+    transform-origin: right 50% 0px;
+    transform: translate3d(0px, 0px, 0px) scale(1, 1);
+  }
+  100% {
+    transform-origin: right 50% 0px;
+    transform: translate3d(0px, 0px, 0px) scale(0, 1);
+  }
 }

@@ -4,7 +4,7 @@ import MaterialIcon from "react-google-material-icons";
 
 class App extends Component {
   state = {
-    flipJar: false,
+    flipJarSave: false,
     submitText: "Add",
     saveJarValue: "",
     saveJarTotal: 0.0,
@@ -14,26 +14,33 @@ class App extends Component {
     spendJarValue: "",
     spendJarTotal: 0.0,
     spendJarNote: "",
+    flipJarShare: false,
+    submitTextJarShare: "Add",
+    shareJarValue: "",
+    shareJarTotal: 0.0,
+    shareJarNote: "",
     flipJarLog: false,
-    log: []
+    log: [],
+    pageTrans: false
   };
 
+  //Save jar methods
   handleAddButtonText = () => {
     this.setState({
       submitText: "Add"
     });
-    this.flipJar();
+    this.flipJarSave();
   };
   handleMinusButtonText = () => {
     this.setState({
       submitText: "Minus"
     });
-    this.flipJar();
+    this.flipJarSave();
   };
-  flipJar = () => {
+  flipJarSave = () => {
     console.log("Make jar flip now!");
     this.setState(prevState => ({
-      flipJar: !prevState.flipJar
+      flipJarSave: !prevState.flipJarSave
     }));
   };
   handleSaveJarValueChange = e => {
@@ -69,7 +76,7 @@ class App extends Component {
         }
       ]
     });
-    this.flipJar();
+    this.flipJarSave();
   };
   handleMinusSaveJar = () => {
     const { saveJarTotal, saveJarValue, log, saveJarNote } = this.state;
@@ -93,13 +100,16 @@ class App extends Component {
         }
       ]
     });
-    this.flipJar();
+    this.flipJarSave();
   };
+
   flipJarLog = () => {
     this.setState(prevState => ({
       flipJarLog: !prevState.flipJarLog
     }));
   };
+
+  //Spend jar methods
   handleAddButtonTextJarSpend = () => {
     this.setState({
       submitTextJarSpend: "Add"
@@ -177,6 +187,96 @@ class App extends Component {
     this.flipJarSpend();
   };
 
+  //Share jar methods
+  handleAddButtonTextJarShare = () => {
+    this.setState({
+      submitTextJarShare: "Add"
+    });
+    this.flipJarShare();
+  };
+  handleMinusButtonTextJarShare = () => {
+    this.setState({
+      submitTextJarShare: "Minus"
+    });
+    this.flipJarShare();
+  };
+  flipJarShare = () => {
+    console.log("Make jar flip now!");
+    this.setState(prevState => ({
+      flipJarShare: !prevState.flipJarShare
+    }));
+  };
+  handleShareJarNoteChange = e => {
+    this.setState({
+      shareJarNote: e.target.value
+    });
+  };
+  handleShareJarValueChange = e => {
+    this.setState({
+      shareJarValue: e.target.value
+    });
+  };
+  handleAddShareJar = () => {
+    const { shareJarTotal, shareJarValue, log, shareJarNote } = this.state;
+    //Convert the input value from a string to a number
+    let x = shareJarValue - 0;
+    let newTotal = Math.round((x + shareJarTotal) * 100) / 100;
+    let firstLog = log.length;
+
+    this.setState({
+      shareJarTotal: newTotal,
+      shareJarValue: "",
+      shareJarNote: "",
+      log: [
+        ...log,
+        {
+          amount: `+${shareJarValue}`,
+          date: new Date().toDateString(),
+          jar: "Share",
+          total: firstLog !== 0 ? newTotal : shareJarValue,
+          note: shareJarNote
+        }
+      ]
+    });
+    this.flipJarShare();
+  };
+  handleMinusShareJar = () => {
+    const { shareJarTotal, shareJarValue, log, shareJarNote } = this.state;
+    //Convert the input value from a string to a number
+    let x = shareJarValue - 0;
+    let newTotal = Math.round((shareJarTotal - x) * 100) / 100;
+    let firstLog = log.length;
+
+    this.setState({
+      shareJarTotal: newTotal,
+      shareJarValue: "",
+      shareJarNote: "",
+      log: [
+        ...log,
+        {
+          amount: `-${shareJarValue}`,
+          date: new Date().toDateString(),
+          jar: "Share",
+          total: firstLog !== 0 ? newTotal : shareJarValue,
+          note: shareJarNote
+        }
+      ]
+    });
+    this.flipJarShare();
+  };
+
+  handleWipe = () => {
+    this.setState(prevState => ({
+      pageTrans: !prevState.pageTrans
+    }));
+
+    setTimeout(() => {
+      this.setState({
+        pageTrans: false
+      });
+    }, 2000);
+  };
+
   render() {
     const {
       submitText,
@@ -186,14 +286,26 @@ class App extends Component {
       spendJarTotal,
       spendJarNote,
       spendJarValue,
-      submitTextJarSpend
+      submitTextJarSpend,
+      shareJarNote,
+      shareJarTotal,
+      shareJarValue,
+      submitTextJarShare,
+      pageTrans
     } = this.state;
     return (
-      <div className="flex root">
+      <div className={pageTrans ? "flex root menu-open" : "flex root"}>
+        <div id="page-trans" />
         <nav className="flex">
-          <div className="user flex--col">
-            <span className="user__name">AJ</span>
-            <span className="user__name user__name--deactive">JR</span>
+          <div className="users flex--col">
+            <div className="user" id="jr" onClick={this.handleWipe}>
+              <span className="user__name">JR</span>
+              <div className="user__name--hover" />
+            </div>
+            <div className="user" id="aj">
+              <span className="user__name user__name--deactive">AJ</span>
+              <div className="user__name--hover" />
+            </div>
           </div>
           <div className="user__subnav user__subnav--darkgray" />
           <div className="user__subnav user__subnav--lightgray lattice-dollar-sign-bg" />
@@ -202,7 +314,9 @@ class App extends Component {
           <div className="flex jars__row">
             <div
               className={
-                this.state.flipJar ? "jar jar--save jar--flip" : "jar jar--save"
+                this.state.flipJarSave
+                  ? "jar jar--save jar--flip"
+                  : "jar jar--save"
               }
             >
               <div className="jar__front jar__front--save">
@@ -249,7 +363,7 @@ class App extends Component {
               <div className="jar__back jar__back--save">
                 <div>
                   <div className="flex flex--between">
-                    <button onClick={this.flipJar}>
+                    <button onClick={this.flipJarSave}>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 22 22"
@@ -414,45 +528,111 @@ class App extends Component {
             </div>
           </div>
           <div className="flex jars__row">
-            <div className="jar jar--share">
-              <div className="flex flex--between">
-                <button>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
-                    <circle
-                      className="button__circle"
-                      fill="none"
-                      stroke="#fff"
-                      strokeWidth="1"
-                      strokeMiterlimit="10"
-                      cx="11"
-                      cy="11"
-                      r="10"
-                    />
-                  </svg>
-                  <MaterialIcon icon="add" size={36} />
-                </button>
-                <button>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
-                    <circle
-                      className="button__circle"
-                      fill="none"
-                      stroke="#fff"
-                      strokeWidth="1"
-                      strokeMiterlimit="10"
-                      cx="11"
-                      cy="11"
-                      r="10"
-                    />
-                  </svg>
-                  <MaterialIcon icon="remove" size={36} />
-                </button>
+            <div
+              className={
+                this.state.flipJarShare
+                  ? "jar jar--share jar--flip"
+                  : "jar jar--share"
+              }
+            >
+              <div className="jar__front jar__front--share">
+                <div className="flex flex--between">
+                  <button onClick={this.handleAddButtonTextJarShare}>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
+                      <circle
+                        className="button__circle"
+                        fill="none"
+                        stroke="#fff"
+                        strokeWidth="1"
+                        strokeMiterlimit="10"
+                        cx="11"
+                        cy="11"
+                        r="10"
+                      />
+                    </svg>
+                    <MaterialIcon icon="add" size={36} />
+                  </button>
+                  <button onClick={this.handleMinusButtonTextJarShare}>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
+                      <circle
+                        className="button__circle"
+                        fill="none"
+                        stroke="#fff"
+                        strokeWidth="1"
+                        strokeMiterlimit="10"
+                        cx="11"
+                        cy="11"
+                        r="10"
+                      />
+                    </svg>
+                    <MaterialIcon icon="remove" size={36} />
+                  </button>
+                </div>
+                <div className="flex flex--horz-center jar__amount">
+                  <span>$</span>
+                  <span>{shareJarTotal}</span>
+                </div>
+                <div className="jar__label">
+                  <span>Share</span>
+                </div>
               </div>
-              <div className="flex flex--horz-center jar__amount">
-                <span>$</span>
-                <span>14.25</span>
-              </div>
-              <div className="jar__label">
-                <span>Share</span>
+              <div className="jar__back jar__back--share">
+                <div>
+                  <div className="flex flex--between">
+                    <button onClick={this.flipJarShare}>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 22 22"
+                      >
+                        <circle
+                          className="button__circle"
+                          fill="none"
+                          stroke="#4c4c4c"
+                          strokeWidth="1"
+                          strokeMiterlimit="10"
+                          cx="11"
+                          cy="11"
+                          r="10"
+                        />
+                      </svg>
+                      <MaterialIcon icon="close" size={36} />
+                    </button>
+                  </div>
+                  <div className="jar__back__note">
+                    <div className="flex input--highlight">
+                      <label htmlFor="">Note:</label>
+                      <input
+                        type="text"
+                        value={shareJarNote}
+                        onChange={this.handleShareJarNoteChange}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex flex--horz-center jar__amount__new">
+                    <div className="flex flex--horz-center input--highlight">
+                      <input
+                        type="text"
+                        value={shareJarValue}
+                        onChange={this.handleShareJarValueChange}
+                      />
+                    </div>
+                  </div>
+                  <input
+                    type="submit"
+                    value={submitTextJarShare}
+                    onClick={
+                      submitTextJarShare === "Add"
+                        ? this.handleAddShareJar
+                        : this.handleMinusShareJar
+                    }
+                  />
+                  <div className="jar__new-total">
+                    <span>Previous total: </span>
+                    <span>${shareJarTotal}</span>
+                  </div>
+                </div>
               </div>
             </div>
             <div
