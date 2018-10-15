@@ -333,10 +333,12 @@ class App extends Component {
                 <div className="flex flex--between">
                   <Button
                     setIcon="add"
+                    strokeColor="#ffffff"
                     changeButtonText={this.handleAddButtonText}
                   />
                   <Button
                     setIcon="remove"
+                    strokeColor="#ffffff"
                     changeButtonText={this.handleMinusButtonText}
                   />
                 </div>
@@ -351,24 +353,11 @@ class App extends Component {
               <div className="jar__back jar__back--save">
                 <div>
                   <div className="flex flex--between">
-                    <button onClick={this.flipJarSave}>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 22 22"
-                      >
-                        <circle
-                          className="button__circle"
-                          fill="none"
-                          stroke="#4c4c4c"
-                          strokeWidth="1"
-                          strokeMiterlimit="10"
-                          cx="11"
-                          cy="11"
-                          r="10"
-                        />
-                      </svg>
-                      <MaterialIcon icon="close" size={36} />
-                    </button>
+                    <Button
+                      setIcon="close"
+                      strokeColor="#4c4c4c"
+                      changeButtonText={this.flipJarSave}
+                    />
                   </div>
                   <div className="jar__back__note">
                     <div className="flex input--highlight">
@@ -421,36 +410,16 @@ class App extends Component {
             >
               <div className="jar__front jar__front--spend">
                 <div className="flex flex--between">
-                  <button onClick={this.handleAddButtonTextJarSpend}>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
-                      <circle
-                        className="button__circle"
-                        fill="none"
-                        stroke="#fff"
-                        strokeWidth="1"
-                        strokeMiterlimit="10"
-                        cx="11"
-                        cy="11"
-                        r="10"
-                      />
-                    </svg>
-                    <MaterialIcon icon="add" size={36} />
-                  </button>
-                  <button onClick={this.handleMinusButtonTextJarSpend}>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
-                      <circle
-                        className="button__circle"
-                        fill="none"
-                        stroke="#fff"
-                        strokeWidth="1"
-                        strokeMiterlimit="10"
-                        cx="11"
-                        cy="11"
-                        r="10"
-                      />
-                    </svg>
-                    <MaterialIcon icon="remove" size={36} />
-                  </button>
+                  <Button
+                    setIcon="add"
+                    strokeColor="#ffffff"
+                    changeButtonText={this.handleAddButtonTextJarSpend}
+                  />
+                  <Button
+                    setIcon="remove"
+                    strokeColor="#ffffff"
+                    changeButtonText={this.handleMinusButtonTextJarSpend}
+                  />
                 </div>
                 <div className="flex flex--horz-center jar__amount">
                   <span>$</span>
@@ -463,24 +432,11 @@ class App extends Component {
               <div className="jar__back jar__back--spend">
                 <div>
                   <div className="flex flex--between">
-                    <button onClick={this.flipJarSpend}>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 22 22"
-                      >
-                        <circle
-                          className="button__circle"
-                          fill="none"
-                          stroke="#4c4c4c"
-                          strokeWidth="1"
-                          strokeMiterlimit="10"
-                          cx="11"
-                          cy="11"
-                          r="10"
-                        />
-                      </svg>
-                      <MaterialIcon icon="close" size={36} />
-                    </button>
+                    <Button
+                      setIcon="close"
+                      strokeColor="#4c4c4c"
+                      changeButtonText={this.flipJarSpend}
+                    />
                   </div>
                   <div className="jar__back__note">
                     <div className="flex input--highlight">
@@ -532,36 +488,16 @@ class App extends Component {
             >
               <div className="jar__front jar__front--share">
                 <div className="flex flex--between">
-                  <button onClick={this.handleAddButtonTextJarShare}>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
-                      <circle
-                        className="button__circle"
-                        fill="none"
-                        stroke="#fff"
-                        strokeWidth="1"
-                        strokeMiterlimit="10"
-                        cx="11"
-                        cy="11"
-                        r="10"
-                      />
-                    </svg>
-                    <MaterialIcon icon="add" size={36} />
-                  </button>
-                  <button onClick={this.handleMinusButtonTextJarShare}>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
-                      <circle
-                        className="button__circle"
-                        fill="none"
-                        stroke="#fff"
-                        strokeWidth="1"
-                        strokeMiterlimit="10"
-                        cx="11"
-                        cy="11"
-                        r="10"
-                      />
-                    </svg>
-                    <MaterialIcon icon="remove" size={36} />
-                  </button>
+                  <Button
+                    setIcon="add"
+                    strokeColor="#ffffff"
+                    changeButtonText={this.handleAddButtonTextJarShare}
+                  />
+                  <Button
+                    setIcon="remove"
+                    strokeColor="#ffffff"
+                    changeButtonText={this.handleMinusButtonTextJarShare}
+                  />
                 </div>
                 <div className="flex flex--horz-center jar__amount">
                   <span>$</span>
@@ -574,24 +510,11 @@ class App extends Component {
               <div className="jar__back jar__back--share">
                 <div>
                   <div className="flex flex--between">
-                    <button onClick={this.flipJarShare}>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 22 22"
-                      >
-                        <circle
-                          className="button__circle"
-                          fill="none"
-                          stroke="#4c4c4c"
-                          strokeWidth="1"
-                          strokeMiterlimit="10"
-                          cx="11"
-                          cy="11"
-                          r="10"
-                        />
-                      </svg>
-                      <MaterialIcon icon="close" size={36} />
-                    </button>
+                    <Button
+                      setIcon="close"
+                      strokeColor="#4c4c4c"
+                      changeButtonText={this.flipJarShare}
+                    />
                   </div>
                   <div className="jar__back__note">
                     <div className="flex input--highlight">
@@ -639,24 +562,12 @@ class App extends Component {
             >
               <div className="jar__front jar__front--log">
                 <div className="flex flex--end">
-                  <button
-                    onClick={this.flipJarLog}
-                    className="jar__arrow_upward--rotate45deg"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
-                      <circle
-                        className="button__circle"
-                        fill="none"
-                        stroke="#fff"
-                        strokeWidth="1"
-                        strokeMiterlimit="10"
-                        cx="11"
-                        cy="11"
-                        r="10"
-                      />
-                    </svg>
-                    <MaterialIcon icon="arrow_upward" size={36} />
-                  </button>
+                  <Button
+                    setIcon="arrow_upward"
+                    strokeColor="#ffffff"
+                    addClass="jar__arrow_upward--rotate45deg"
+                    changeButtonText={this.flipJarLog}
+                  />
                 </div>
                 <div className="flex flex--horz-center jar__amount">
                   <span>LOG</span>
@@ -668,24 +579,11 @@ class App extends Component {
               <div className="jar__back jar__back--log">
                 <div>
                   <div className="flex flex--between">
-                    <button onClick={this.flipJarLog}>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 22 22"
-                      >
-                        <circle
-                          className="button__circle"
-                          fill="none"
-                          stroke="#4c4c4c"
-                          strokeWidth="1"
-                          strokeMiterlimit="10"
-                          cx="11"
-                          cy="11"
-                          r="10"
-                        />
-                      </svg>
-                      <MaterialIcon icon="close" size={36} />
-                    </button>
+                    <Button
+                      setIcon="close"
+                      strokeColor="#4c4c4c"
+                      changeButtonText={this.flipJarLog}
+                    />
                   </div>
                   <div className="jar__back__log">
                     {this.state.log.map((l, index) => (
