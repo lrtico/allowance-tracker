@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import MaterialIcon from "react-google-material-icons";
+import Button from "../Buttons/Button";
 
 class App extends Component {
   state = {
@@ -330,36 +331,14 @@ class App extends Component {
             >
               <div className="jar__front jar__front--save">
                 <div className="flex flex--between">
-                  <button onClick={this.handleAddButtonText}>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
-                      <circle
-                        className="button__circle"
-                        fill="none"
-                        stroke="#fff"
-                        strokeWidth="1"
-                        strokeMiterlimit="10"
-                        cx="11"
-                        cy="11"
-                        r="10"
-                      />
-                    </svg>
-                    <MaterialIcon icon="add" size={36} />
-                  </button>
-                  <button onClick={this.handleMinusButtonText}>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
-                      <circle
-                        className="button__circle"
-                        fill="none"
-                        stroke="#fff"
-                        strokeWidth="1"
-                        strokeMiterlimit="10"
-                        cx="11"
-                        cy="11"
-                        r="10"
-                      />
-                    </svg>
-                    <MaterialIcon icon="remove" size={36} />
-                  </button>
+                  <Button
+                    setIcon="add"
+                    changeButtonText={this.handleAddButtonText}
+                  />
+                  <Button
+                    setIcon="remove"
+                    changeButtonText={this.handleMinusButtonText}
+                  />
                 </div>
                 <div className="flex flex--horz-center jar__amount">
                   <span>$</span>
@@ -407,7 +386,7 @@ class App extends Component {
                   <div className="flex flex--horz-center jar__amount__new">
                     <div className="flex flex--horz-center input--highlight">
                       <div id="save-jar-error">
-                        <p>Please enter only numbers and a decimal</p>
+                        <p>Wah-wah-waaaaaah! Nice try! Only #s :P</p>
                       </div>
                       <input
                         maxLength="6"
@@ -507,6 +486,7 @@ class App extends Component {
                     <div className="flex input--highlight">
                       <label htmlFor="">Note:</label>
                       <input
+                        maxLength="75"
                         type="text"
                         value={spendJarNote}
                         onChange={this.handleSpendJarNoteChange}
@@ -518,6 +498,7 @@ class App extends Component {
                   <div className="flex flex--horz-center jar__amount__new">
                     <div className="flex flex--horz-center input--highlight">
                       <input
+                        maxLength="6"
                         type="text"
                         value={spendJarValue}
                         onChange={this.handleSpendJarValueChange}
