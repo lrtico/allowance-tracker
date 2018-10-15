@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Button from "../Buttons/Button";
 import AddNote from "../Inputs/AddNote";
+import InputValueError from "../Validation/InputValueError";
 
 class App extends Component {
   state = {
@@ -144,9 +145,18 @@ class App extends Component {
     });
   };
   handleSpendJarValueChange = e => {
-    this.setState({
-      spendJarValue: e.target.value
-    });
+    if (isNaN(e.target.value)) {
+      document
+        .getElementById("spend-jar-error")
+        .classList.add("spend-jar-error--active");
+    } else {
+      this.setState({
+        spendJarValue: e.target.value
+      });
+      document
+        .getElementById("spend-jar-error")
+        .classList.remove("spend-jar-error--active");
+    }
   };
   handleAddSpendJar = () => {
     const { spendJarTotal, spendJarValue, log, spendJarNote } = this.state;
@@ -222,9 +232,18 @@ class App extends Component {
     });
   };
   handleShareJarValueChange = e => {
-    this.setState({
-      shareJarValue: e.target.value
-    });
+    if (isNaN(e.target.value)) {
+      document
+        .getElementById("share-jar-error")
+        .classList.add("share-jar-error--active");
+    } else {
+      this.setState({
+        shareJarValue: e.target.value
+      });
+      document
+        .getElementById("share-jar-error")
+        .classList.remove("share-jar-error--active");
+    }
   };
   handleAddShareJar = () => {
     const { shareJarTotal, shareJarValue, log, shareJarNote } = this.state;
@@ -367,9 +386,13 @@ class App extends Component {
                 <div>
                   <div className="flex flex--horz-center jar__amount__new">
                     <div className="flex flex--horz-center input--highlight">
-                      <div id="save-jar-error">
+                      <InputValueError
+                        inputValueErrorJar="save-jar-error"
+                        inputValueErrorMessage="Wah-wah-waaaaaah! Nice try! Only #s :P"
+                      />
+                      {/* <div id="save-jar-error" className="jar-input-error">
                         <p>Wah-wah-waaaaaah! Nice try! Only #s :P</p>
-                      </div>
+                      </div> */}
                       <input
                         maxLength="6"
                         type="text"
@@ -439,6 +462,10 @@ class App extends Component {
                 <div>
                   <div className="flex flex--horz-center jar__amount__new">
                     <div className="flex flex--horz-center input--highlight">
+                      <InputValueError
+                        inputValueErrorJar="spend-jar-error"
+                        inputValueErrorMessage="Wah-wah-waaaaaah! Nice try! Only #s :P"
+                      />
                       <input
                         maxLength="6"
                         type="text"
@@ -510,7 +537,15 @@ class App extends Component {
                 <div>
                   <div className="flex flex--horz-center jar__amount__new">
                     <div className="flex flex--horz-center input--highlight">
+                      <InputValueError
+                        inputValueErrorJar="share-jar-error"
+                        inputValueErrorMessage="Wah-wah-waaaaaah! Nice try! Only #s :P"
+                      />
+                      {/* <div id="share-jar-error" className="jar-input-error">
+                        <p>Wah-wah-waaaaaah! Nice try! Only #s :P</p>
+                      </div> */}
                       <input
+                        maxLength="6"
                         type="text"
                         value={shareJarValue}
                         onChange={this.handleShareJarValueChange}

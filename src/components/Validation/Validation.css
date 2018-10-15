@@ -1,0 +1,21 @@
+/*
+Validation
+*/
+.jar-input-error {
+  color: red;
+  font-size: 1.2rem;
+  opacity: 0;
+  position: absolute;
+  bottom: -9px;
+  transition: all 500ms ease-in-out;
+}
+#save-jar-error.save-jar-error--active,
+#spend-jar-error.spend-jar-error--active,
+#share-jar-error.share-jar-error--active {
+  display: block;
+  opacity: 1;
+  bottom: 9px;
+}
+.jar-input-error p {
+  margin: 0;
+}
