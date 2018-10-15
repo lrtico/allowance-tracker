@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Button from "../Buttons/Button";
+import AddNote from "../Inputs/AddNote";
 
 class App extends Component {
   state = {
@@ -358,17 +359,10 @@ class App extends Component {
                       changeButtonText={this.flipJarSave}
                     />
                   </div>
-                  <div className="jar__back__note">
-                    <div className="flex input--highlight">
-                      <label htmlFor="">Note:</label>
-                      <input
-                        maxLength="75"
-                        type="text"
-                        value={saveJarNote}
-                        onChange={this.handleSaveJarNoteChange}
-                      />
-                    </div>
-                  </div>
+                  <AddNote
+                    jarValue={saveJarNote}
+                    handleJarValueChange={this.handleSaveJarNoteChange}
+                  />
                 </div>
                 <div>
                   <div className="flex flex--horz-center jar__amount__new">
@@ -437,17 +431,10 @@ class App extends Component {
                       changeButtonText={this.flipJarSpend}
                     />
                   </div>
-                  <div className="jar__back__note">
-                    <div className="flex input--highlight">
-                      <label htmlFor="">Note:</label>
-                      <input
-                        maxLength="75"
-                        type="text"
-                        value={spendJarNote}
-                        onChange={this.handleSpendJarNoteChange}
-                      />
-                    </div>
-                  </div>
+                  <AddNote
+                    jarValue={spendJarNote}
+                    handleJarValueChange={this.handleSpendJarNoteChange}
+                  />
                 </div>
                 <div>
                   <div className="flex flex--horz-center jar__amount__new">
@@ -515,16 +502,10 @@ class App extends Component {
                       changeButtonText={this.flipJarShare}
                     />
                   </div>
-                  <div className="jar__back__note">
-                    <div className="flex input--highlight">
-                      <label htmlFor="">Note:</label>
-                      <input
-                        type="text"
-                        value={shareJarNote}
-                        onChange={this.handleShareJarNoteChange}
-                      />
-                    </div>
-                  </div>
+                  <AddNote
+                    jarValue={shareJarNote}
+                    handleJarValueChange={this.handleShareJarNoteChange}
+                  />
                 </div>
                 <div>
                   <div className="flex flex--horz-center jar__amount__new">
