@@ -1,5 +1,6 @@
 import React from "react";
 import MaterialIcon from "react-google-material-icons";
+import "./Button.css";
 
 const Button = props => {
   console.log("Button add props, ", props);
