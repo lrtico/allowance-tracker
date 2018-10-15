@@ -390,9 +390,6 @@ class App extends Component {
                         inputValueErrorJar="save-jar-error"
                         inputValueErrorMessage="Wah-wah-waaaaaah! Nice try! Only #s :P"
                       />
-                      {/* <div id="save-jar-error" className="jar-input-error">
-                        <p>Wah-wah-waaaaaah! Nice try! Only #s :P</p>
-                      </div> */}
                       <input
                         maxLength="6"
                         type="text"
@@ -541,9 +538,6 @@ class App extends Component {
                         inputValueErrorJar="share-jar-error"
                         inputValueErrorMessage="Wah-wah-waaaaaah! Nice try! Only #s :P"
                       />
-                      {/* <div id="share-jar-error" className="jar-input-error">
-                        <p>Wah-wah-waaaaaah! Nice try! Only #s :P</p>
-                      </div> */}
                       <input
                         maxLength="6"
                         type="text"

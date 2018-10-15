@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./AddNote.css";
 
 const AddNote = props => {
@@ -15,6 +16,11 @@ const AddNote = props => {
       </div>
     </div>
   );
+};
+
+AddNote.proptypes = {
+  jarValue: PropTypes.string,
+  handleJarValueChange: PropTypes.func
 };
 
 export default AddNote;
