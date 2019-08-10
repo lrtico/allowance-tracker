@@ -26,26 +26,26 @@ class App extends Component {
     shareJarNote: "",
     flipJarLog: false,
     log: [],
-    pageTrans: false
+    pageTrans: false,
   };
 
   //Save jar methods
   handleAddButtonText = () => {
     this.setState({
-      submitText: "Add"
+      submitText: "Add",
     });
     this.flipJarSave();
   };
   handleMinusButtonText = () => {
     this.setState({
-      submitText: "Minus"
+      submitText: "Minus",
     });
     this.flipJarSave();
   };
   flipJarSave = () => {
     console.log("Make jar flip now!");
     this.setState(prevState => ({
-      flipJarSave: !prevState.flipJarSave
+      flipJarSave: !prevState.flipJarSave,
     }));
   };
   handleSaveJarValueChange = e => {
@@ -55,7 +55,7 @@ class App extends Component {
         .classList.add("save-jar-error--active");
     } else {
       this.setState({
-        saveJarValue: e.target.value
+        saveJarValue: e.target.value,
       });
       document
         .getElementById("save-jar-error")
@@ -64,7 +64,7 @@ class App extends Component {
   };
   handleSaveJarNoteChange = e => {
     this.setState({
-      saveJarNote: e.target.value
+      saveJarNote: e.target.value,
     });
   };
   handleAddSaveJar = () => {
@@ -86,9 +86,9 @@ class App extends Component {
           date: new Date().toDateString(),
           jar: "Save",
           total: firstLog !== 0 ? newTotal : saveJarValue,
-          note: saveJarNote
-        }
-      ]
+          note: saveJarNote,
+        },
+      ],
     });
     this.flipJarSave();
   };
@@ -110,41 +110,41 @@ class App extends Component {
           date: new Date().toDateString(),
           jar: "Save",
           total: firstLog !== 0 ? newTotal : saveJarValue,
-          note: saveJarNote
-        }
-      ]
+          note: saveJarNote,
+        },
+      ],
     });
     this.flipJarSave();
   };
 
   flipJarLog = () => {
     this.setState(prevState => ({
-      flipJarLog: !prevState.flipJarLog
+      flipJarLog: !prevState.flipJarLog,
     }));
   };
 
   //Spend jar methods
   handleAddButtonTextJarSpend = () => {
     this.setState({
-      submitTextJarSpend: "Add"
+      submitTextJarSpend: "Add",
     });
     this.flipJarSpend();
   };
   handleMinusButtonTextJarSpend = () => {
     this.setState({
-      submitTextJarSpend: "Minus"
+      submitTextJarSpend: "Minus",
     });
     this.flipJarSpend();
   };
   flipJarSpend = () => {
     console.log("Make jar flip now!");
     this.setState(prevState => ({
-      flipJarSpend: !prevState.flipJarSpend
+      flipJarSpend: !prevState.flipJarSpend,
     }));
   };
   handleSpendJarNoteChange = e => {
     this.setState({
-      spendJarNote: e.target.value
+      spendJarNote: e.target.value,
     });
   };
   handleSpendJarValueChange = e => {
@@ -154,7 +154,7 @@ class App extends Component {
         .classList.add("spend-jar-error--active");
     } else {
       this.setState({
-        spendJarValue: e.target.value
+        spendJarValue: e.target.value,
       });
       document
         .getElementById("spend-jar-error")
@@ -179,9 +179,9 @@ class App extends Component {
           date: new Date().toDateString(),
           jar: "Spend",
           total: firstLog !== 0 ? newTotal : spendJarValue,
-          note: spendJarNote
-        }
-      ]
+          note: spendJarNote,
+        },
+      ],
     });
     this.flipJarSpend();
   };
@@ -203,9 +203,9 @@ class App extends Component {
           date: new Date().toDateString(),
           jar: "Spend",
           total: firstLog !== 0 ? newTotal : spendJarValue,
-          note: spendJarNote
-        }
-      ]
+          note: spendJarNote,
+        },
+      ],
     });
     this.flipJarSpend();
   };
@@ -213,25 +213,25 @@ class App extends Component {
   //Share jar methods
   handleAddButtonTextJarShare = () => {
     this.setState({
-      submitTextJarShare: "Add"
+      submitTextJarShare: "Add",
     });
     this.flipJarShare();
   };
   handleMinusButtonTextJarShare = () => {
     this.setState({
-      submitTextJarShare: "Minus"
+      submitTextJarShare: "Minus",
     });
     this.flipJarShare();
   };
   flipJarShare = () => {
     console.log("Make jar flip now!");
     this.setState(prevState => ({
-      flipJarShare: !prevState.flipJarShare
+      flipJarShare: !prevState.flipJarShare,
     }));
   };
   handleShareJarNoteChange = e => {
     this.setState({
-      shareJarNote: e.target.value
+      shareJarNote: e.target.value,
     });
   };
   handleShareJarValueChange = e => {
@@ -241,7 +241,7 @@ class App extends Component {
         .classList.add("share-jar-error--active");
     } else {
       this.setState({
-        shareJarValue: e.target.value
+        shareJarValue: e.target.value,
       });
       document
         .getElementById("share-jar-error")
@@ -266,9 +266,9 @@ class App extends Component {
           date: new Date().toDateString(),
           jar: "Share",
           total: firstLog !== 0 ? newTotal : shareJarValue,
-          note: shareJarNote
-        }
-      ]
+          note: shareJarNote,
+        },
+      ],
     });
     this.flipJarShare();
   };
@@ -290,21 +290,21 @@ class App extends Component {
           date: new Date().toDateString(),
           jar: "Share",
           total: firstLog !== 0 ? newTotal : shareJarValue,
-          note: shareJarNote
-        }
-      ]
+          note: shareJarNote,
+        },
+      ],
     });
     this.flipJarShare();
   };
 
   handleWipe = () => {
     this.setState(prevState => ({
-      pageTrans: !prevState.pageTrans
+      pageTrans: !prevState.pageTrans,
     }));
 
     setTimeout(() => {
       this.setState({
-        pageTrans: false
+        pageTrans: false,
       });
     }, 2000);
   };
@@ -323,7 +323,7 @@ class App extends Component {
       shareJarTotal,
       shareJarValue,
       submitTextJarShare,
-      pageTrans
+      pageTrans,
     } = this.state;
     return (
       <div className={pageTrans ? "flex root menu-open" : "flex root"}>
