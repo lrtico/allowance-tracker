@@ -3,6 +3,9 @@ import "./App.css";
 import Button from "../Buttons/Button";
 import AddNote from "../Inputs/AddNote";
 import InputValueError from "../Validation/InputValueError";
+import JarAmount from "../JarAmount/JarAmount";
+import JarLabel from "../JarLabel/JarLabel";
+import JarPreviousTotal from "../JarPreviousTotal/JarPreviousTotal";
 
 class App extends Component {
   state = {
@@ -361,13 +364,8 @@ class App extends Component {
                     changeButtonText={this.handleMinusButtonText}
                   />
                 </div>
-                <div className="flex flex--horz-center jar__amount">
-                  <span>$</span>
-                  <span>{saveJarTotal}</span>
-                </div>
-                <div className="jar__label">
-                  <span>Save</span>
-                </div>
+                <JarAmount jarTotal={saveJarTotal} />
+                <JarLabel jarLabel="Save" />
               </div>
               <div className="jar__back jar__back--save">
                 <div>
@@ -407,10 +405,7 @@ class App extends Component {
                         : this.handleMinusSaveJar
                     }
                   />
-                  <div className="jar__new-total">
-                    <span>Previous total: </span>
-                    <span>${saveJarTotal}</span>
-                  </div>
+                  <JarPreviousTotal jarPreviousTotal={saveJarTotal} />
                 </div>
               </div>
             </div>
@@ -434,13 +429,8 @@ class App extends Component {
                     changeButtonText={this.handleMinusButtonTextJarSpend}
                   />
                 </div>
-                <div className="flex flex--horz-center jar__amount">
-                  <span>$</span>
-                  <span>{spendJarTotal}</span>
-                </div>
-                <div className="jar__label">
-                  <span>Spend</span>
-                </div>
+                <JarAmount jarTotal={spendJarTotal} />
+                <JarLabel jarLabel="Spend" />
               </div>
               <div className="jar__back jar__back--spend">
                 <div>
@@ -480,10 +470,7 @@ class App extends Component {
                         : this.handleMinusSpendJar
                     }
                   />
-                  <div className="jar__new-total">
-                    <span>Previous total: </span>
-                    <span>${spendJarTotal}</span>
-                  </div>
+                  <JarPreviousTotal jarPreviousTotal={spendJarTotal} />
                 </div>
               </div>
             </div>
@@ -509,13 +496,8 @@ class App extends Component {
                     changeButtonText={this.handleMinusButtonTextJarShare}
                   />
                 </div>
-                <div className="flex flex--horz-center jar__amount">
-                  <span>$</span>
-                  <span>{shareJarTotal}</span>
-                </div>
-                <div className="jar__label">
-                  <span>Share</span>
-                </div>
+                <JarAmount jarTotal={shareJarTotal} />
+                <JarLabel jarLabel="Share" />
               </div>
               <div className="jar__back jar__back--share">
                 <div>
@@ -555,10 +537,7 @@ class App extends Component {
                         : this.handleMinusShareJar
                     }
                   />
-                  <div className="jar__new-total">
-                    <span>Previous total: </span>
-                    <span>${shareJarTotal}</span>
-                  </div>
+                  <JarPreviousTotal jarPreviousTotal={shareJarTotal} />
                 </div>
               </div>
             </div>
@@ -581,9 +560,7 @@ class App extends Component {
                 <div className="flex flex--horz-center jar__amount">
                   <span>LOG</span>
                 </div>
-                <div className="jar__label">
-                  <span>History</span>
-                </div>
+                <JarLabel jarLabel="History" />
               </div>
               <div className="jar__back jar__back--log">
                 <div>
