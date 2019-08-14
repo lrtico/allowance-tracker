@@ -8,7 +8,8 @@
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-google-material-icons": "^1.0.4",
-    "react-scripts": "1.1.5"
+    "react-scripts": "1.1.5",
+    "redux": "^4.0.4"
   },
   "scripts": {
     "start": "react-scripts start",

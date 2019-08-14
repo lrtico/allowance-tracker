@@ -34,34 +34,51 @@ class App extends Component {
     this.setState({
       submitText: 'Add',
     });
-    this.flipJarSave();
+    this.handleFlipJarSave();
+
+    // Delete the two calls above
+    // store.dispatch({
+    //   action.type: ADD_SAVE_JAR,
+    // });
   };
 
   handleMinusButtonText = () => {
     this.setState({
       submitText: 'Minus',
     });
-    this.flipJarSave();
+    this.handleFlipJarSave();
+
+    // Delete the two calls above
+    // store.dispatch({
+    //   action.type: MINUS_SAVE_JAR,
+    // });
   };
 
-  flipJarSave = () => {
+  handleFlipJarSave = () => {
     console.log('Make jar flip now!');
     this.setState(prevState => ({
       flipJarSave: !prevState.flipJarSave,
     }));
+
+    // Delete the entire method
   };
 
   handleSaveJarValueChange = e => {
     if (isNaN(e.target.value)) {
       document
-        .getElementById('save-jar-error')
+        .querySelector('#save-jar-error')
         .classList.add('save-jar-error--active');
     } else {
       this.setState({
         saveJarValue: e.target.value,
       });
+
+      // Delete the set state call above
+      // let value = e.target.value;
+      // setSaveJarValue(value);
+
       document
-        .getElementById('save-jar-error')
+        .querySelector('#save-jar-error')
         .classList.remove('save-jar-error--active');
     }
   };
@@ -70,14 +87,24 @@ class App extends Component {
     this.setState({
       saveJarNote: e.target.value,
     });
+
+    // let value = e.target.value;
+    // setSaveJarNote(value)
   };
 
   handleAddSaveJar = () => {
-    const { saveJarTotal, saveJarValue, log, saveJarNote } = this.state;
+    const {
+      saveJarTotal, saveJarValue, log, saveJarNote,
+    } = this.state;
+
+    // let date = new Date().toDateString();
+    // setSaveJarTotal('Save jar', saveJarValue, date, saveJarNote, saveJarTotal);
+    // Delete everything below
+
     // Convert the input value from a string to a number
-    let x = saveJarValue - 0;
-    let newTotal = Math.round((x + saveJarTotal) * 100) / 100;
-    let firstLog = log.length;
+    const x = saveJarValue - 0;
+    const newTotal = Math.round((x + saveJarTotal) * 100) / 100;
+    const firstLog = log.length;
     console.log('log length is ', firstLog);
 
     this.setState({
@@ -95,11 +122,19 @@ class App extends Component {
         },
       ],
     });
-    this.flipJarSave();
+    this.handleFlipJarSave();
   };
 
   handleMinusSaveJar = () => {
-    const { saveJarTotal, saveJarValue, log, saveJarNote } = this.state;
+    const {
+      saveJarTotal, saveJarValue, log, saveJarNote,
+    } = this.state;
+    // let date = new Date().toDateString();
+    // I need to make the saveJarValue a negative number
+    // let saveJarValue = saveJarValue * -1;
+    // setSaveJarTotal('Save jar', saveJarValue, date, saveJarNote, saveJarTotal);
+    // Delete everything below
+
     // Convert the input value from a string to a number
     let x = saveJarValue - 0;
     let newTotal = Math.round((saveJarTotal - x) * 100) / 100;
@@ -120,13 +155,16 @@ class App extends Component {
         },
       ],
     });
-    this.flipJarSave();
+    this.handleFlipJarSave();
   };
 
-  flipJarLog = () => {
+  handleFlipJarLog = () => {
     this.setState(prevState => ({
       flipJarLog: !prevState.flipJarLog,
     }));
+    // store.dispatch({
+    // action.type: SHOW_LOG,
+    // });
   };
 
   // Spend jar methods
@@ -134,27 +172,42 @@ class App extends Component {
     this.setState({
       submitTextJarSpend: 'Add',
     });
-    this.flipJarSpend();
+    this.handleFlipJarSpend();
+
+    // Delete the two calls above
+    // store.dispatch({
+    //   action.type: ADD_SPEND_JAR,
+    // });
   };
 
   handleMinusButtonTextJarSpend = () => {
     this.setState({
       submitTextJarSpend: 'Minus',
     });
-    this.flipJarSpend();
+    this.handleFlipJarSpend();
+
+    // Delete the two calls above
+    // store.dispatch({
+    //   action.type: MINUS_SPEND_JAR,
+    // });
   };
 
-  flipJarSpend = () => {
+  handleFlipJarSpend = () => {
     console.log('Make jar flip now!');
     this.setState(prevState => ({
       flipJarSpend: !prevState.flipJarSpend,
     }));
+
+    // Delete the entire method
   };
 
   handleSpendJarNoteChange = e => {
     this.setState({
       spendJarNote: e.target.value,
     });
+
+    // let value = e.target.value;
+    // setSpendJarNote(value);
   };
 
   handleSpendJarValueChange = e => {
@@ -166,6 +219,11 @@ class App extends Component {
       this.setState({
         spendJarValue: e.target.value,
       });
+
+      // Delete the set state call above
+      // let value = e.target.value;
+      // setSpendJarValue(value);
+
       document
         .getElementById('spend-jar-error')
         .classList.remove('spend-jar-error--active');
@@ -173,7 +231,14 @@ class App extends Component {
   };
 
   handleAddSpendJar = () => {
-    const { spendJarTotal, spendJarValue, log, spendJarNote } = this.state;
+    const {
+      spendJarTotal, spendJarValue, log, spendJarNote,
+    } = this.state;
+
+    // let date = new Date().toDateString();
+    // setSpendJarTotal('Spend jar', spendJarValue, date, spendJarNote, spendJarTotal);
+    // Delete everything below
+
     // Convert the input value from a string to a number
     let x = spendJarValue - 0;
     let newTotal = Math.round((x + spendJarTotal) * 100) / 100;
@@ -194,11 +259,20 @@ class App extends Component {
         },
       ],
     });
-    this.flipJarSpend();
+    this.handleFlipJarSpend();
   };
 
   handleMinusSpendJar = () => {
-    const { spendJarTotal, spendJarValue, log, spendJarNote } = this.state;
+    const {
+      spendJarTotal, spendJarValue, log, spendJarNote,
+    } = this.state;
+
+    // let date = new Date().toDateString();
+    // I need to make the spendJarValue a negative number
+    // let spendJarValue = spendJarValue * -1;
+    // setSpendJarTotal('Spend jar', spendJarValue, date, spendJarNote, spendJarTotal);
+    // Delete everything below
+
     // Convert the input value from a string to a number
     let x = spendJarValue - 0;
     let newTotal = Math.round((spendJarTotal - x) * 100) / 100;
@@ -219,7 +293,7 @@ class App extends Component {
         },
       ],
     });
-    this.flipJarSpend();
+    this.handleFlipJarSpend();
   };
 
   // Share jar methods
@@ -227,27 +301,43 @@ class App extends Component {
     this.setState({
       submitTextJarShare: 'Add',
     });
-    this.flipJarShare();
+    this.handleFlipJarShare();
+
+    // Delete two calls above
+    // store.dispatch({
+    //    action.type: C.ADD_SHARE_JAR
+    // });
   };
 
   handleMinusButtonTextJarShare = () => {
     this.setState({
       submitTextJarShare: 'Minus',
     });
-    this.flipJarShare();
+    this.handleFlipJarShare();
+
+    // Delete two calls above
+    // store.dispatch({
+    //    action.type: C.MINUS_SHARE_JAR
+    // });
   };
 
-  flipJarShare = () => {
+  handleFlipJarShare = () => {
     console.log('Make jar flip now!');
     this.setState(prevState => ({
       flipJarShare: !prevState.flipJarShare,
     }));
+
+    // Delete this method entirely
   };
 
   handleShareJarNoteChange = e => {
     this.setState({
       shareJarNote: e.target.value,
     });
+
+    // Delete everything above
+    // let value = e.target.value;
+    // setShareJareNote(value);
   };
 
   handleShareJarValueChange = e => {
@@ -259,6 +349,11 @@ class App extends Component {
       this.setState({
         shareJarValue: e.target.value,
       });
+
+      // Delete set state call above
+      // let value = e.target.value;
+      // setShareJarValue(value);
+
       document
         .getElementById('share-jar-error')
         .classList.remove('share-jar-error--active');
@@ -266,11 +361,18 @@ class App extends Component {
   };
 
   handleAddShareJar = () => {
-    const { shareJarTotal, shareJarValue, log, shareJarNote } = this.state;
+    const {
+      shareJarTotal, shareJarValue, log, shareJarNote,
+    } = this.state;
+
+    // let date = new Date().toDateString();
+    // setShareJarTotal('Share jar', shareJarValue, date, shareJarNote, shareJarTotal);
+    // Delete everything below
+
     // Convert the input value from a string to a number
-    let x = shareJarValue - 0;
-    let newTotal = Math.round((x + shareJarTotal) * 100) / 100;
-    let firstLog = log.length;
+    const x = shareJarValue - 0;
+    const newTotal = Math.round((x + shareJarTotal) * 100) / 100;
+    const firstLog = log.length;
 
     this.setState({
       shareJarTotal: newTotal,
@@ -287,15 +389,23 @@ class App extends Component {
         },
       ],
     });
-    this.flipJarShare();
+    this.handleFlipJarShare();
   };
 
   handleMinusShareJar = () => {
-    const { shareJarTotal, shareJarValue, log, shareJarNote } = this.state;
+    const {
+      shareJarTotal, shareJarValue, log, shareJarNote,
+    } = this.state;
+
+    // let date = new Date().toDateString();
+    // let shareJarValue = shareJarValue * -1;
+    // setShareJarTotal('Share jar', shareJarValue, date, shareJarNote, shareJarTotal);
+    // Delete everything below
+
     // Convert the input value from a string to a number
-    let x = shareJarValue - 0;
-    let newTotal = Math.round((shareJarTotal - x) * 100) / 100;
-    let firstLog = log.length;
+    const x = shareJarValue - 0;
+    const newTotal = Math.round((shareJarTotal - x) * 100) / 100;
+    const firstLog = log.length;
 
     this.setState({
       shareJarTotal: newTotal,
@@ -312,7 +422,7 @@ class App extends Component {
         },
       ],
     });
-    this.flipJarShare();
+    this.handleFlipJarShare();
   };
 
   handleWipe = () => {
@@ -329,6 +439,11 @@ class App extends Component {
 
   render() {
     const {
+      flipJarSave,
+      flipJarSpend,
+      flipJarShare,
+      flipJarLog,
+      log,
       submitText,
       saveJarTotal,
       saveJarValue,
@@ -343,12 +458,39 @@ class App extends Component {
       submitTextJarShare,
       pageTrans,
     } = this.state;
+
+    const {
+      handleWipe,
+      handleAddButtonText,
+      handleMinusButtonText,
+      handleSaveJarNoteChange,
+      handleSaveJarValueChange,
+      handleAddSaveJar,
+      handleMinusSaveJar,
+      handleFlipJarSave,
+      handleAddButtonTextJarSpend,
+      handleMinusButtonTextJarSpend,
+      handleSpendJarNoteChange,
+      handleSpendJarValueChange,
+      handleAddSpendJar,
+      handleMinusSpendJar,
+      handleFlipJarSpend,
+      handleAddButtonTextJarShare,
+      handleMinusButtonTextJarShare,
+      handleShareJarNoteChange,
+      handleShareJarValueChange,
+      handleAddShareJar,
+      handleMinusShareJar,
+      handleFlipJarShare,
+      handleFlipJarLog,
+    } = this;
+
     return (
       <div className={pageTrans ? 'flex root menu-open' : 'flex root'}>
         <div id="page-trans" />
         <nav className="flex">
           <div className="users flex--col">
-            <div className="user" id="jr" onClick={this.handleWipe}>
+            <div className="user" id="jr" onClick={handleWipe}>
               <span className="user__name">JR</span>
               <div className="user__name--hover" />
             </div>
@@ -364,7 +506,7 @@ class App extends Component {
           <div className="flex jars__row">
             <div
               className={
-                this.state.flipJarSave
+                flipJarSave
                   ? 'jar jar--save jar--flip'
                   : 'jar jar--save'
               }
@@ -374,12 +516,12 @@ class App extends Component {
                   <Button
                     setIcon="add"
                     strokeColor="#ffffff"
-                    changeButtonText={this.handleAddButtonText}
+                    changeButtonText={handleAddButtonText}
                   />
                   <Button
                     setIcon="remove"
                     strokeColor="#ffffff"
-                    changeButtonText={this.handleMinusButtonText}
+                    changeButtonText={handleMinusButtonText}
                   />
                 </div>
                 <JarAmount jarTotal={saveJarTotal} />
@@ -391,12 +533,12 @@ class App extends Component {
                     <Button
                       setIcon="close"
                       strokeColor="#4c4c4c"
-                      changeButtonText={this.flipJarSave}
+                      changeButtonText={handleFlipJarSave}
                     />
                   </div>
                   <AddNote
                     jarValue={saveJarNote}
-                    handleJarValueChange={this.handleSaveJarNoteChange}
+                    handleJarValueChange={handleSaveJarNoteChange}
                   />
                 </div>
                 <div>
@@ -410,7 +552,7 @@ class App extends Component {
                         maxLength="6"
                         type="text"
                         value={saveJarValue}
-                        onChange={this.handleSaveJarValueChange}
+                        onChange={handleSaveJarValueChange}
                       />
                     </div>
                   </div>
@@ -419,8 +561,8 @@ class App extends Component {
                     value={submitText}
                     onClick={
                       submitText === 'Add'
-                        ? this.handleAddSaveJar
-                        : this.handleMinusSaveJar
+                        ? handleAddSaveJar
+                        : handleMinusSaveJar
                     }
                   />
                   <JarPreviousTotal jarPreviousTotal={saveJarTotal} />
@@ -429,7 +571,7 @@ class App extends Component {
             </div>
             <div
               className={
-                this.state.flipJarSpend
+                flipJarSpend
                   ? 'jar jar--spend jar--flip'
                   : 'jar jar--spend'
               }
@@ -439,12 +581,12 @@ class App extends Component {
                   <Button
                     setIcon="add"
                     strokeColor="#ffffff"
-                    changeButtonText={this.handleAddButtonTextJarSpend}
+                    changeButtonText={handleAddButtonTextJarSpend}
                   />
                   <Button
                     setIcon="remove"
                     strokeColor="#ffffff"
-                    changeButtonText={this.handleMinusButtonTextJarSpend}
+                    changeButtonText={handleMinusButtonTextJarSpend}
                   />
                 </div>
                 <JarAmount jarTotal={spendJarTotal} />
@@ -456,12 +598,12 @@ class App extends Component {
                     <Button
                       setIcon="close"
                       strokeColor="#4c4c4c"
-                      changeButtonText={this.flipJarSpend}
+                      changeButtonText={handleFlipJarSpend}
                     />
                   </div>
                   <AddNote
                     jarValue={spendJarNote}
-                    handleJarValueChange={this.handleSpendJarNoteChange}
+                    handleJarValueChange={handleSpendJarNoteChange}
                   />
                 </div>
                 <div>
@@ -475,7 +617,7 @@ class App extends Component {
                         maxLength="6"
                         type="text"
                         value={spendJarValue}
-                        onChange={this.handleSpendJarValueChange}
+                        onChange={handleSpendJarValueChange}
                       />
                     </div>
                   </div>
@@ -484,8 +626,8 @@ class App extends Component {
                     value={submitTextJarSpend}
                     onClick={
                       submitTextJarSpend === 'Add'
-                        ? this.handleAddSpendJar
-                        : this.handleMinusSpendJar
+                        ? handleAddSpendJar
+                        : handleMinusSpendJar
                     }
                   />
                   <JarPreviousTotal jarPreviousTotal={spendJarTotal} />
@@ -496,7 +638,7 @@ class App extends Component {
           <div className="flex jars__row">
             <div
               className={
-                this.state.flipJarShare
+                flipJarShare
                   ? 'jar jar--share jar--flip'
                   : 'jar jar--share'
               }
@@ -506,12 +648,12 @@ class App extends Component {
                   <Button
                     setIcon="add"
                     strokeColor="#ffffff"
-                    changeButtonText={this.handleAddButtonTextJarShare}
+                    changeButtonText={handleAddButtonTextJarShare}
                   />
                   <Button
                     setIcon="remove"
                     strokeColor="#ffffff"
-                    changeButtonText={this.handleMinusButtonTextJarShare}
+                    changeButtonText={handleMinusButtonTextJarShare}
                   />
                 </div>
                 <JarAmount jarTotal={shareJarTotal} />
@@ -523,12 +665,12 @@ class App extends Component {
                     <Button
                       setIcon="close"
                       strokeColor="#4c4c4c"
-                      changeButtonText={this.flipJarShare}
+                      changeButtonText={handleFlipJarShare}
                     />
                   </div>
                   <AddNote
                     jarValue={shareJarNote}
-                    handleJarValueChange={this.handleShareJarNoteChange}
+                    handleJarValueChange={handleShareJarNoteChange}
                   />
                 </div>
                 <div>
@@ -542,7 +684,7 @@ class App extends Component {
                         maxLength="6"
                         type="text"
                         value={shareJarValue}
-                        onChange={this.handleShareJarValueChange}
+                        onChange={handleShareJarValueChange}
                       />
                     </div>
                   </div>
@@ -551,8 +693,8 @@ class App extends Component {
                     value={submitTextJarShare}
                     onClick={
                       submitTextJarShare === 'Add'
-                        ? this.handleAddShareJar
-                        : this.handleMinusShareJar
+                        ? handleAddShareJar
+                        : handleMinusShareJar
                     }
                   />
                   <JarPreviousTotal jarPreviousTotal={shareJarTotal} />
@@ -561,7 +703,7 @@ class App extends Component {
             </div>
             <div
               className={
-                this.state.flipJarLog
+                flipJarLog
                   ? 'jar jar--log jar--flip'
                   : 'jar jar--log'
               }
@@ -572,7 +714,7 @@ class App extends Component {
                     setIcon="arrow_upward"
                     strokeColor="#ffffff"
                     addClass="jar__arrow_upward--rotate45deg"
-                    changeButtonText={this.flipJarLog}
+                    changeButtonText={handleFlipJarLog}
                   />
                 </div>
                 <div className="flex flex--horz-center jar__amount">
@@ -586,11 +728,11 @@ class App extends Component {
                     <Button
                       setIcon="close"
                       strokeColor="#4c4c4c"
-                      changeButtonText={this.flipJarLog}
+                      changeButtonText={handleFlipJarLog}
                     />
                   </div>
                   <div className="jar__back__log">
-                    {this.state.log.map((l, index) => (
+                    {log.map((l, index) => (
                       <div
                         className="jar__back__log__item flex flex--between"
                         key={index}
