@@ -1,6 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
-import "./JarAmount.css";
+import React from 'react';
+// import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import './JarAmount.css';
 
 const JarAmount = props => {
   return (
@@ -12,7 +13,7 @@ const JarAmount = props => {
 };
 
 JarAmount.propTypes = {
-  jarTotal: PropTypes.number
+  jarTotal: PropTypes.number,
 };
 
 export default JarAmount;

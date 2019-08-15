@@ -1,5 +1,17 @@
 import C from './constants';
 
+export const closeSaveJar = () => ({
+  type: C.CLOSE_SAVE_JAR,
+});
+
+export const setSubmitTextAddSaveJar = () => ({
+  type: C.ADD_SAVE_JAR,
+});
+
+export const setSubmitTextMinusSaveJar = () => ({
+  type: C.MINUS_SAVE_JAR,
+});
+
 export const setSaveJarValue = (value) => ({
   type: C.SET_SAVE_VALUE,
   payload: value,
@@ -28,6 +40,18 @@ export const setSaveJarTotal = (jar, amount, date, note, currTotal) => {
   };
 };
 
+export const closeSpendJar = () => ({
+  type: C.CLOSE_SPEND_JAR,
+});
+
+export const setSubmitTextAddSpendJar = () => ({
+  type: C.ADD_SPEND_JAR,
+});
+
+export const setSubmitTextMinusSpendJar = () => ({
+  type: C.MINUS_SPEND_JAR,
+});
+
 export const setSpendJarValue = (value) => ({
   type: C.SET_SPEND_VALUE,
   payload: value,
@@ -53,6 +77,18 @@ export const setSpendJarTotal = (jar, amount, date, note, currTotal) => {
   };
 };
 
+export const closeShareJar = () => ({
+  type: C.CLOSE_SHARE_JAR,
+});
+
+export const setSubmitTextAddShareJar = () => ({
+  type: C.ADD_SHARE_JAR,
+});
+
+export const setSubmitTextMinusShareJar = () => ({
+  type: C.MINUS_SHARE_JAR,
+});
+
 export const setShareJarValue = (value) => ({
   type: C.SET_SHARE_VALUE,
   payload: value,
@@ -77,3 +113,11 @@ export const setShareJarTotal = (jar, amount, date, note, currTotal) => {
     },
   };
 };
+
+export const makeLogFlip = () => ({
+  type: C.SHOW_LOG,
+});
+
+export const flipCloseLog = () => ({
+  type: C.CLOSE_LOG,
+});

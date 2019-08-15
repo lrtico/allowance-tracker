@@ -3,7 +3,7 @@
   "flipJarSave": false,
   "flipJarShare": false,
   "flipJarSpend": false,
-  "log": [
+  "logs": [
     {
       "amount": "+3",
       "date": "Sat Aug 10 2019",
@@ -26,7 +26,6 @@
       "total": "4.5"
     }
   ],
-  "pageTrans": false,
   "saveJarNote": "",
   "saveJarTotal": 0,
   "saveJarValue": "",

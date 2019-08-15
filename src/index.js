@@ -1,15 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
 import storeFactory from './store';
+import sampleData from './store/initialState';
 import { setSaveJarTotal, setSaveJarValue, setSaveJarNote } from './store/actions';
 import C from './store/constants';
 import './index.css';
-import App from './components/App/App';
-import registerServiceWorker from './registerServiceWorker';
+import App from './containers/App';
+
+const rootEl = document.getElementById('root');
 
 const initialState = (localStorage['allowance-tracker'])
   ? JSON.parse(localStorage['allowance-tracker'])
-  : {};
+  : sampleData;
 
 const saveState = () => {
   const state = JSON.stringify(store.getState());
@@ -46,5 +49,9 @@ store.dispatch({
   type: C.MINUS_SAVE_JAR,
 });
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  rootEl,
+);
