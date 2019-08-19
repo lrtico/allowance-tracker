@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 import './JarAmount.css';
 
 const JarAmount = props => {
+  const { jarTotal } = props;
   return (
     <div className="flex flex--horz-center jar__amount">
       <span>$</span>
-      <span>{props.jarTotal}</span>
+      <span>{jarTotal}</span>
     </div>
   );
 };

@@ -1,6 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './App.css';
+// import C from '../../store/constants';
+import {
+  closeSaveJar, setSubmitTextAddSaveJar, setSubmitTextMinusSaveJar,
+  setSaveJarNote, setSaveJarValue, setSaveJarTotal,
+  closeSpendJar, setSubmitTextAddSpendJar, setSubmitTextMinusSpendJar,
+  setSpendJarNote, setSpendJarValue, setSpendJarTotal,
+  closeShareJar, setSubmitTextAddShareJar, setSubmitTextMinusShareJar,
+  setShareJarNote, setShareJarValue, setShareJarTotal,
+  makeLogFlip, flipCloseLog,
+} from '../../store/actions';
 import Button from '../Buttons/Button';
 import AddNote from '../Inputs/AddNote';
 import InputValueError from '../Validation/InputValueError';
@@ -9,194 +18,193 @@ import JarLabel from '../JarLabel/JarLabel';
 import JarPreviousTotal from '../JarPreviousTotal/JarPreviousTotal';
 
 // Save jar functions
-// const cancelSaveJarChange = () => {
-//   closeSaveJar();
-// };
+const cancelSaveJarChange = () => {
+  closeSaveJar();
+};
 
-// const handleAddButtonText = () => {
-//   // store.dispatch({
-//   //   type: C.ADD_SAVE_JAR,
-//   // });
-//   setSubmitTextAddSaveJar();
-// };
+const handleAddButtonText = () => {
+  // store.dispatch({
+  //   type: C.ADD_SAVE_JAR,
+  // });
+  setSubmitTextAddSaveJar();
+};
 
-// const handleMinusButtonText = () => {
-//   // store.dispatch({
-//   //   type: C.ADD_SAVE_JAR,
-//   // });
-//   setSubmitTextMinusSaveJar();
-// };
+const handleMinusButtonText = () => {
+  // store.dispatch({
+  //   type: C.ADD_SAVE_JAR,
+  // });
+  setSubmitTextMinusSaveJar();
+};
 
-// in the action creator setSaveJarValue add if/else logic that checks if the value is a # or not
-// const handleSaveJarValueChange = e => {
-//   if (isNaN(e.target.value)) {
-//     document
-//       .querySelector('#save-jar-error')
-//       .classList.add('save-jar-error--active');
-//   } else {
-//     // setSaveJarValue(e.target.value);
+const handleSaveJarValueChange = e => {
+  if (isNaN(e.target.value)) {
+    document
+      .querySelector('#save-jar-error')
+      .classList.add('save-jar-error--active');
+  } else {
+    setSaveJarValue(e.target.value);
 
-//     document
-//       .querySelector('#save-jar-error')
-//       .classList.remove('save-jar-error--active');
-//   }
-// };
+    document
+      .querySelector('#save-jar-error')
+      .classList.remove('save-jar-error--active');
+  }
+};
 
-// const handleSaveJarNoteChange = e => {
-//   setSaveJarNote(e.target.value);
-// };
+const handleSaveJarNoteChange = e => {
+  setSaveJarNote(e.target.value);
+};
 
-// const handleAddSaveJar = () => {
-//   const {
-//     saveJarTotal, saveJarValue, saveJarNote,
-//   } = this.state;
+const handleAddSaveJar = () => {
+  const {
+    saveJarTotal, saveJarValue, saveJarNote,
+  } = this.state;
 
-//   const date = new Date().toDateString();
-//   setSaveJarTotal('Save jar', saveJarValue, date, saveJarNote, saveJarTotal);
-// };
+  const date = new Date().toDateString();
+  setSaveJarTotal('Save jar', saveJarValue, date, saveJarNote, saveJarTotal);
+};
 
-// const handleMinusSaveJar = () => {
-//   const {
-//     saveJarTotal, saveJarValue, saveJarNote,
-//   } = this.state;
-//   const date = new Date().toDateString();
-//   // I need to make the saveJarValue a negative number
-//   const negativeValue = saveJarValue * -1;
-//   setSaveJarTotal('Save jar', negativeValue, date, saveJarNote, saveJarTotal);
-// };
+const handleMinusSaveJar = () => {
+  const {
+    saveJarTotal, saveJarValue, saveJarNote,
+  } = this.state;
+  const date = new Date().toDateString();
+  // I need to make the saveJarValue a negative number
+  const negativeValue = saveJarValue * -1;
+  setSaveJarTotal('Save jar', negativeValue, date, saveJarNote, saveJarTotal);
+};
 
-// const handleFlipJarLog = () => {
-//   // store.dispatch({
-//   //   type: C.SHOW_LOG,
-//   // });
-//   makeLogFlip();
-// };
+const handleFlipJarLog = () => {
+  // store.dispatch({
+  //   type: C.SHOW_LOG,
+  // });
+  makeLogFlip();
+};
 
-// const handleClosingLog = () => {
-//   // store.dispatch({
-//   //   type: C.CLOSE_LOG,
-//   // });
-//   flipCloseLog();
-// };
+const handleClosingLog = () => {
+  // store.dispatch({
+  //   type: C.CLOSE_LOG,
+  // });
+  flipCloseLog();
+};
 
-// // Spend jar functions
-// const cancelSpendJarChange = () => {
-//   // store.dispatch({
-//   //   type: C.CLOSE_SPEND_JAR,
-//   // });
-//   closeSpendJar();
-// };
+// Spend jar functions
+const cancelSpendJarChange = () => {
+  // store.dispatch({
+  //   type: C.CLOSE_SPEND_JAR,
+  // });
+  closeSpendJar();
+};
 
-// const handleAddButtonTextJarSpend = () => {
-//   // store.dispatch({
-//   //   type: C.ADD_SPEND_JAR,
-//   // });
-//   setSubmitTextAddSpendJar();
-// };
+const handleAddButtonTextJarSpend = () => {
+  // store.dispatch({
+  //   type: C.ADD_SPEND_JAR,
+  // });
+  setSubmitTextAddSpendJar();
+};
 
-// const handleMinusButtonTextJarSpend = () => {
-//   // store.dispatch({
-//   //   type: C.MINUS_SPEND_JAR,
-//   // });
-//   setSubmitTextMinusSpendJar();
-// };
+const handleMinusButtonTextJarSpend = () => {
+  // store.dispatch({
+  //   type: C.MINUS_SPEND_JAR,
+  // });
+  setSubmitTextMinusSpendJar();
+};
 
-// const handleSpendJarNoteChange = e => {
-//   setSpendJarNote(e.target.value);
-// };
+const handleSpendJarNoteChange = e => {
+  setSpendJarNote(e.target.value);
+};
 
-// const handleSpendJarValueChange = e => {
-//   if (isNaN(e.target.value)) {
-//     document
-//       .getElementById('spend-jar-error')
-//       .classList.add('spend-jar-error--active');
-//   } else {
-//     setSpendJarValue(e.target.value);
+const handleSpendJarValueChange = e => {
+  if (isNaN(e.target.value)) {
+    document
+      .getElementById('spend-jar-error')
+      .classList.add('spend-jar-error--active');
+  } else {
+    setSpendJarValue(e.target.value);
 
-//     document
-//       .getElementById('spend-jar-error')
-//       .classList.remove('spend-jar-error--active');
-//   }
-// };
+    document
+      .getElementById('spend-jar-error')
+      .classList.remove('spend-jar-error--active');
+  }
+};
 
-// const handleAddSpendJar = () => {
-//   const {
-//     spendJarTotal, spendJarValue, spendJarNote,
-//   } = this.state;
+const handleAddSpendJar = () => {
+  const {
+    spendJarTotal, spendJarValue, spendJarNote,
+  } = this.state;
 
-//   const date = new Date().toDateString();
-//   setSpendJarTotal('Spend jar', spendJarValue, date, spendJarNote, spendJarTotal);
-// };
+  const date = new Date().toDateString();
+  setSpendJarTotal('Spend jar', spendJarValue, date, spendJarNote, spendJarTotal);
+};
 
-// const handleMinusSpendJar = () => {
-//   const {
-//     spendJarTotal, spendJarValue, spendJarNote,
-//   } = this.state;
+const handleMinusSpendJar = () => {
+  const {
+    spendJarTotal, spendJarValue, spendJarNote,
+  } = this.state;
 
-//   const date = new Date().toDateString();
-//   // I need to make the spendJarValue a negative number
-//   const negativeValue = spendJarValue * -1;
-//   setSpendJarTotal('Spend jar', negativeValue, date, spendJarNote, spendJarTotal);
-// };
+  const date = new Date().toDateString();
+  // I need to make the spendJarValue a negative number
+  const negativeValue = spendJarValue * -1;
+  setSpendJarTotal('Spend jar', negativeValue, date, spendJarNote, spendJarTotal);
+};
 
 // Share jar functions
-// const cancelShareJarChange = () => {
-//   // store.dispatch({
-//   //   type: C.ADD_SPEND_JAR,
-//   // });
-//   closeShareJar();
-// };
+const cancelShareJarChange = () => {
+  // store.dispatch({
+  //   type: C.ADD_SPEND_JAR,
+  // });
+  closeShareJar();
+};
 
-// const handleAddButtonTextJarShare = () => {
-//   // store.dispatch({
-//   //   type: C.ADD_SHARE_JAR,
-//   // });
-//   setSubmitTextAddShareJar();
-// };
+const handleAddButtonTextJarShare = () => {
+  // store.dispatch({
+  //   type: C.ADD_SHARE_JAR,
+  // });
+  setSubmitTextAddShareJar();
+};
 
-// const handleMinusButtonTextJarShare = () => {
-//   // store.dispatch({
-//   //   type: C.MINUS_SHARE_JAR,
-//   // });
-//   setSubmitTextMinusShareJar();
-// };
+const handleMinusButtonTextJarShare = () => {
+  // store.dispatch({
+  //   type: C.MINUS_SHARE_JAR,
+  // });
+  setSubmitTextMinusShareJar();
+};
 
-// const handleShareJarNoteChange = e => {
-//   setShareJarNote(e.target.value);
-// };
+const handleShareJarNoteChange = e => {
+  setShareJarNote(e.target.value);
+};
 
-// const handleShareJarValueChange = e => {
-//   if (isNaN(e.target.value)) {
-//     document
-//       .getElementById('share-jar-error')
-//       .classList.add('share-jar-error--active');
-//   } else {
-//     setShareJarValue(e.target.value);
+const handleShareJarValueChange = e => {
+  if (isNaN(e.target.value)) {
+    document
+      .getElementById('share-jar-error')
+      .classList.add('share-jar-error--active');
+  } else {
+    setShareJarValue(e.target.value);
 
-//     document
-//       .getElementById('share-jar-error')
-//       .classList.remove('share-jar-error--active');
-//   }
-// };
+    document
+      .getElementById('share-jar-error')
+      .classList.remove('share-jar-error--active');
+  }
+};
 
-// const handleAddShareJar = () => {
-//   const {
-//     shareJarTotal, shareJarValue, shareJarNote,
-//   } = this.state;
+const handleAddShareJar = () => {
+  const {
+    shareJarTotal, shareJarValue, shareJarNote,
+  } = this.state;
 
-//   const date = new Date().toDateString();
-//   setShareJarTotal('Share jar', shareJarValue, date, shareJarNote, shareJarTotal);
-// };
+  const date = new Date().toDateString();
+  setShareJarTotal('Share jar', shareJarValue, date, shareJarNote, shareJarTotal);
+};
 
-// const handleMinusShareJar = () => {
-//   const {
-//     shareJarTotal, shareJarValue, shareJarNote,
-//   } = this.state;
+const handleMinusShareJar = () => {
+  const {
+    shareJarTotal, shareJarValue, shareJarNote,
+  } = this.state;
 
-//   const date = new Date().toDateString();
-//   const negativeValue = shareJarValue * -1;
-//   setShareJarTotal('Share jar', negativeValue, date, shareJarNote, shareJarTotal);
-// };
+  const date = new Date().toDateString();
+  const negativeValue = shareJarValue * -1;
+  setShareJarTotal('Share jar', negativeValue, date, shareJarNote, shareJarTotal);
+};
 
 const handleWipe = () => {
   this.setState(prevState => ({
@@ -210,14 +218,14 @@ const handleWipe = () => {
   }, 2000);
 };
 
-const AppConnected = props => {
+const App = props => {
   const {
     flipJarSave,
     flipJarSpend,
     flipJarShare,
     flipJarLog,
-    logs,
-    submitTextJarSave,
+    log,
+    submitText,
     saveJarTotal,
     saveJarValue,
     saveJarNote,
@@ -230,31 +238,7 @@ const AppConnected = props => {
     shareJarValue,
     submitTextJarShare,
     pageTrans,
-    handleAddButtonText,
-    handleMinusButtonText,
-    cancelSaveJarChange,
-    cancelSpendJarChange,
-    cancelShareJarChange,
-    handleSaveJarNoteChange,
-    handleSaveJarValueChange,
-    handleAddSaveJar,
-    handleMinusSaveJar,
-    handleAddButtonTextJarSpend,
-    handleMinusButtonTextJarSpend,
-    handleSpendJarNoteChange,
-    handleSpendJarValueChange,
-    handleMinusSpendJar,
-    handleAddSpendJar,
-    handleAddButtonTextJarShare,
-    handleMinusButtonTextJarShare,
-    handleShareJarNoteChange,
-    handleShareJarValueChange,
-    handleAddShareJar,
-    handleMinusShareJar,
-    handleFlipJarLog,
-    handleClosingLog,
   } = props;
-  console.log('AppConnected props:', props);
   return (
     <div className={pageTrans ? 'flex root menu-open' : 'flex root'}>
       <div id="page-trans" />
@@ -328,11 +312,11 @@ const AppConnected = props => {
                 </div>
                 <input
                   type="submit"
-                  value={submitTextJarSave}
+                  value={submitText}
                   onClick={
-                    submitTextJarSave === 'Add'
-                      ? () => handleAddSaveJar(props)
-                      : () => handleMinusSaveJar(props)
+                    submitText === 'Add'
+                      ? handleAddSaveJar
+                      : handleMinusSaveJar
                   }
                 />
                 <JarPreviousTotal jarPreviousTotal={saveJarTotal} />
@@ -396,8 +380,8 @@ const AppConnected = props => {
                   value={submitTextJarSpend}
                   onClick={
                     submitTextJarSpend === 'Add'
-                      ? () => handleAddSpendJar(props)
-                      : () => handleMinusSpendJar(props)
+                      ? handleAddSpendJar
+                      : handleMinusSpendJar
                   }
                 />
                 <JarPreviousTotal jarPreviousTotal={spendJarTotal} />
@@ -463,8 +447,8 @@ const AppConnected = props => {
                   value={submitTextJarShare}
                   onClick={
                     submitTextJarShare === 'Add'
-                      ? () => handleAddShareJar(props)
-                      : () => handleMinusShareJar(props)
+                      ? handleAddShareJar
+                      : handleMinusShareJar
                   }
                 />
                 <JarPreviousTotal jarPreviousTotal={shareJarTotal} />
@@ -502,23 +486,23 @@ const AppConnected = props => {
                   />
                 </div>
                 <div className="jar__back__log">
-                  {logs.map((l, index) => (
+                  {log.map((l, index) => (
                     <div
                       className="jar__back__log__item flex flex--between"
                       key={index}
                     >
                       <div className="jar__back__log__item__details">
                         <p>
-                          <strong>{`${l.jar}, `}</strong>
+                          <strong>{`${l.jar} jar, `}</strong>
                           <span>{`${l.date}:`}</span>
                         </p>
                         <p>{l.note}</p>
                       </div>
                       <div className="jar__back__log__item__amount">
-                        <p>{l.value}</p>
+                        <p>{l.amount}</p>
                       </div>
                       <div className="jar__back__log__item__total">
-                        <strong>{l.newTotal}</strong>
+                        <strong>{l.total}</strong>
                       </div>
                     </div>
                   ))}
@@ -532,52 +516,9 @@ const AppConnected = props => {
   );
 };
 
-AppConnected.propTypes = {
-  flipJarSave: PropTypes.bool,
-  submitTextJarSave: PropTypes.string,
-  handleAddButtonText: PropTypes.func,
-  handleMinusButtonText: PropTypes.func,
-  cancelSaveJarChange: PropTypes.func,
-  handleSaveJarNoteChange: PropTypes.func,
-  handleSaveJarValueChange: PropTypes.func,
-  handleAddSaveJar: PropTypes.func,
-  handleMinusSaveJar: PropTypes.func,
-  saveJarNote: PropTypes.string,
-  saveJarValue: PropTypes.string,
-  saveJarTotal: PropTypes.number,
-  flipJarSpend: PropTypes.bool,
-  submitTextJarSpend: PropTypes.string,
-  handleAddButtonTextJarSpend: PropTypes.func,
-  handleMinusButtonTextJarSpend: PropTypes.func,
-  cancelSpendJarChange: PropTypes.func,
-  handleSpendJarNoteChange: PropTypes.func,
-  handleSpendJarValueChange: PropTypes.func,
-  handleAddSpendJar: PropTypes.func,
-  handleMinusSpendJar: PropTypes.func,
-  spendJarNote: PropTypes.string,
-  spendJarValue: PropTypes.string,
-  spendJarTotal: PropTypes.number,
-  flipJarShare: PropTypes.bool,
-  handleAddButtonTextJarShare: PropTypes.func,
-  handleMinusButtonTextJarShare: PropTypes.func,
-  cancelShareJarChange: PropTypes.func,
-  submitTextJarShare: PropTypes.string,
-  handleShareJarNoteChange: PropTypes.func,
-  handleShareJarValueChange: PropTypes.func,
-  handleAddShareJar: PropTypes.func,
-  handleMinusShareJar: PropTypes.func,
-  shareJarNote: PropTypes.string,
-  shareJarValue: PropTypes.string,
-  shareJarTotal: PropTypes.number,
-  flipJarLog: PropTypes.bool,
-  handleFlipJarLog: PropTypes.func,
-  handleClosingLog: PropTypes.func,
-  logs: PropTypes.array,
-};
-
-export default AppConnected;
+export default App;
 
 // const App = connect(mapStateToProps, mapDispatchToProps)(AppConnected);
 // export default App;
 
-// export default connect(mapStateToProps, mapDispatchToProps)(App);
+// export default connect(mapStateToProps, mapDispatchToProps)(AppConnected);

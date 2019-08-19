@@ -10,11 +10,18 @@ const consoleMessages = store => next => action => {
   console.log('logs', store.getState().logs.length);
   result = next(action);
 
-  const { logs, flipJarSave } = store.getState();
+  const {
+    logs, flipJarSave, saveJarNote, saveJarValue, saveJarTotal,
+  } = store.getState();
+
   console.log(`
     flipJarLog: ${JSON.stringify(logs)}
     filpJarSave: ${flipJarSave}
+    saveJarNote: ${saveJarNote}
+    saveJarValue: ${saveJarValue}
+    saveJarTotal: ${saveJarTotal}
   `);
+
   console.groupEnd();
 
   return result;

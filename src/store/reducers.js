@@ -28,19 +28,27 @@ export const submitTextJarSave = (state = 'Add', action) => {
 };
 
 export const saveJarNote = (state = '', action) => {
-  if (action.type === C.ADD_SAVE_NOTE) {
-    return action.payload;
+  switch (action.type) {
+    case C.ADD_SAVE_NOTE:
+      return action.payload;
+    case C.SET_SAVE_TOTAL:
+      return '';
+    default:
+      return state;
   }
-  return state;
 };
 
 export const saveJarValue = (state = '', action) => {
   // Every keypress, grab the value of the input and send it to the setSaveJarValue action creator
   // that then sends an action to this reducer to mutate state
-  if (action.type === C.SET_SAVE_VALUE) {
-    return action.payload;
+  switch (action.type) {
+    case C.SET_SAVE_VALUE:
+      return action.payload;
+    case C.SET_SAVE_TOTAL:
+      return '';
+    default:
+      return state;
   }
-  return state;
 };
 
 export const saveJarTotal = (state = 0, action) => {
@@ -81,17 +89,25 @@ export const submitTextJarSpend = (state = 'Add', action) => {
 };
 
 export const spendJarNote = (state = '', action) => {
-  if (action.type === C.ADD_SPEND_NOTE) {
-    return action.payload;
+  switch (action.type) {
+    case C.ADD_SPEND_NOTE:
+      return action.payload;
+    case C.SET_SPEND_TOTAL:
+      return '';
+    default:
+      return state;
   }
-  return state;
 };
 
 export const spendJarValue = (state = '', action) => {
-  if (action.type === C.SET_SPEND_VALUE) {
-    return action.payload;
+  switch (action.type) {
+    case C.SET_SPEND_VALUE:
+      return action.payload;
+    case C.SET_SPEND_TOTAL:
+      return '';
+    default:
+      return state;
   }
-  return state;
 };
 
 export const spendJarTotal = (state = 0, action) => {
@@ -128,17 +144,25 @@ export const submitTextJarShare = (state = 'Add', action) => {
 };
 
 export const shareJarNote = (state = '', action) => {
-  if (action.type === C.ADD_SHARE_NOTE) {
-    return action.payload;
+  switch (action.type) {
+    case C.ADD_SHARE_NOTE:
+      return action.payload;
+    case C.SET_SHARE_TOTAL:
+      return '';
+    default:
+      return state;
   }
-  return state;
 };
 
 export const shareJarValue = (state = '', action) => {
-  if (action.type === C.SET_SHARE_VALUE) {
-    return action.payload;
+  switch (action.type) {
+    case C.SET_SHARE_VALUE:
+      return action.payload;
+    case C.SET_SHARE_TOTAL:
+      return '';
+    default:
+      return state;
   }
-  return state;
 };
 
 export const shareJarTotal = (state = 0, action) => {
@@ -149,15 +173,23 @@ export const shareJarTotal = (state = 0, action) => {
 };
 
 export const flipJarLog = (state = false, action) => {
-  if (action.type === C.SHOW_LOG) {
-    return true;
+  switch (action.type) {
+    case C.SHOW_LOG:
+      return true;
+    case C.CLOSE_LOG:
+      return false;
+    default:
+      return state;
   }
-  return state;
 };
 
 export const logs = (state = [], action) => {
   switch (action.type) {
     case C.SET_SAVE_TOTAL:
+      return [...state, action.payload.log];
+    case C.SET_SPEND_TOTAL:
+      return [...state, action.payload.log];
+    case C.SET_SHARE_TOTAL:
       return [...state, action.payload.log];
     default:
       return state;
