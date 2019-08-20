@@ -2,14 +2,13 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import storeFactory from './store';
-import sampleData from './store/initialState';
-import { setSaveJarTotal, setSaveJarValue, setSaveJarNote } from './store/actions';
-import C from './store/constants';
 import './index.css';
-import App from './containers/App';
+import App from './components/App/App';
 
 const rootEl = document.getElementById('root');
 
+// Create two const to be inserted itno the local storage function call
+// One for AJ, one for JR, to determine which key to be used for the data
 const initialState = (localStorage['allowance-tracker'])
   ? JSON.parse(localStorage['allowance-tracker'])
   : {};

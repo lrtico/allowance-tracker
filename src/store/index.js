@@ -4,10 +4,10 @@ import appReducer from './reducers';
 // Middleware that's a higher order function to create log messages
 // when an action is dispatched to the store
 const consoleMessages = store => next => action => {
-  let result;
+  let result = null;
 
   console.groupCollapsed(`dispatching action => ${action.type}`);
-  console.log('logs', store.getState().logs.length);
+  // console.log('logs', store.getState().logs.length);
   result = next(action);
 
   const {

@@ -4,17 +4,23 @@ import Button from '../Buttons/Button';
 import JarAmount from '../JarAmount/JarAmount';
 import JarLabel from '../JarLabel/JarLabel';
 import AddNote from '../Inputs/AddNote';
+import InputValueError from '../Validation/InputValueError';
+import JarPreviousTotal from '../JarPreviousTotal/JarPreviousTotal';
 
-const SaveJar = ({ handleAddButtonText }) => {
+const SaveJarConnected = (props) => {
+  const {
+    flipJarSave, handleAddButtonText, handleMinusButtonText, saveJarTotal,
+    cancelSaveJarChange, saveJarNote, handleSaveJarNoteChange, submitTextJarSave,
+    saveJarValue, handleSaveJarValueChange, handleAddSaveJar, handleMinusSaveJar,
+  } = props;
   return (
     <div
       className={
-      flipJarSave
-        ? 'jar jar--save jar--flip'
-        : 'jar jar--save'
+        flipJarSave
+          ? 'jar jar--save jar--flip'
+          : 'jar jar--save'
       }
     >
-      {/* Make the below into a JarFront component with a prop for adding the jar__front--name of the jar */}
       <div className="jar__front jar__front--save">
         <div className="flex flex--between">
           <Button
@@ -31,7 +37,6 @@ const SaveJar = ({ handleAddButtonText }) => {
         <JarAmount jarTotal={saveJarTotal} />
         <JarLabel jarLabel="Save" />
       </div>
-      {/* Make the below into a JarBack component with a prop for adding the jar__back--name of the jar */}
       <div className="jar__back jar__back--save">
         <div>
           <div className="flex flex--between">
@@ -63,11 +68,11 @@ const SaveJar = ({ handleAddButtonText }) => {
           </div>
           <input
             type="submit"
-            value={submitText}
+            value={submitTextJarSave}
             onClick={
-              submitText === 'Add'
-                ? handleAddSaveJar
-                : handleMinusSaveJar
+              submitTextJarSave === 'Add'
+                ? () => handleAddSaveJar(props)
+                : () => handleMinusSaveJar(props)
             }
           />
           <JarPreviousTotal jarPreviousTotal={saveJarTotal} />
@@ -77,8 +82,19 @@ const SaveJar = ({ handleAddButtonText }) => {
   );
 };
 
-SaveJar.propTypes = {
+SaveJarConnected.propTypes = {
+  flipJarSave: PropTypes.bool,
+  submitTextJarSave: PropTypes.string,
   handleAddButtonText: PropTypes.func,
+  handleMinusButtonText: PropTypes.func,
+  cancelSaveJarChange: PropTypes.func,
+  handleSaveJarNoteChange: PropTypes.func,
+  handleSaveJarValueChange: PropTypes.func,
+  handleAddSaveJar: PropTypes.func,
+  handleMinusSaveJar: PropTypes.func,
+  saveJarNote: PropTypes.string,
+  saveJarValue: PropTypes.string,
+  saveJarTotal: PropTypes.number,
 };
 
-export default SaveJar;
+export default SaveJarConnected;

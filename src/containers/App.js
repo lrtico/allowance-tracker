@@ -104,7 +104,7 @@ const mapDispatchToProps = dispatch => ({
   handleMinusSpendJar({
     spendJarValue, spendJarNote, spendJarTotal,
   }) {
-    // We need to make the saveJarValue a negative number
+    // We need to make the spendJarValue a negative number
     const negativeValue = spendJarValue * -1;
     dispatch(
       setSpendJarTotal('Spend jar', negativeValue, spendJarNote, spendJarTotal),
