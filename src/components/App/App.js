@@ -62,3 +62,7 @@ export default App;
 // export default App;
 
 // export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+// I think having two routes might work for diff users
+// so, /jr is a jr.js file that has the same components as aj.js,
+// but I do need to refactor some of the reducers and actions for jr and aj

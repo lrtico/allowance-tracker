@@ -196,6 +196,28 @@ export const logs = (state = [], action) => {
   }
 };
 
+export const handleUserAJ = (state = false, action) => {
+  switch (action.type) {
+    case C.SET_USER_AJ:
+      return true;
+    case C.SET_USER_JR:
+      return false;
+    default:
+      return state;
+  }
+};
+
+export const handleUserJR = (state = true, action) => {
+  switch (action.type) {
+    case C.SET_USER_JR:
+      return true;
+    case C.SET_USER_AJ:
+      return false;
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   submitTextJarSave,
   submitTextJarSpend,
@@ -214,4 +236,6 @@ export default combineReducers({
   shareJarNote,
   shareJarValue,
   shareJarTotal,
+  handleUserAJ,
+  handleUserJR,
 });

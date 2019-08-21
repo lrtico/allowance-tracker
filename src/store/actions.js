@@ -198,3 +198,11 @@ export const makeLogFlip = () => ({
 export const flipCloseLog = () => ({
   type: C.CLOSE_LOG,
 });
+
+export const setUserAJ = () => ({
+  type: C.SET_USER_AJ,
+});
+
+export const setUserJR = () => ({
+  type: C.SET_USER_JR,
+});

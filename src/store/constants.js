@@ -22,6 +22,8 @@ const constants = {
   SET_SAVE_SUBMIT: 'SET_SAVE_SUBMIT',
   SET_SPEND_SUBMIT: 'SET_SPEND_SUBMIT',
   SET_SHARE_SUBMIT: 'SET_SHARE_SUBMIT',
+  SET_USER_AJ: 'SET_USER_AJ',
+  SET_USER_JR: 'SET_USER_JR',
 };
 
 export default constants;
