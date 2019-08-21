@@ -196,6 +196,19 @@ export const logs = (state = [], action) => {
   }
 };
 
+export const pageTrans = (state = false, action) => {
+  switch (action.type) {
+    case C.SET_USER_AJ:
+      return true;
+    case C.SET_USER_JR:
+      return true;
+    case C.HIDE_WIPE:
+      return false;
+    default:
+      return state;
+  }
+};
+
 export const handleUserAJ = (state = false, action) => {
   switch (action.type) {
     case C.SET_USER_AJ:
@@ -236,6 +249,54 @@ export default combineReducers({
   shareJarNote,
   shareJarValue,
   shareJarTotal,
+  pageTrans,
   handleUserAJ,
   handleUserJR,
 });
+
+// export default combineReducers({
+//   ajData: combineReducers({
+//     submitTextJarSaveAj,
+//     submitTextJarSpendAj,
+//     submitTextJarShareAj,
+//     flipJarLogAj,
+//     flipJarSaveAj,
+//     flipJarShareAj,
+//     flipJarSpendAj,
+//     logsAj,
+//     saveJarNoteAj,
+//     saveJarValueAj,
+//     saveJarTotalAj,
+//     spendJarNoteAj,
+//     spendJarValueAj,
+//     spendJarTotalAj,
+//     shareJarNoteAj,
+//     shareJarValueAj,
+//     shareJarTotalAj,
+//     pageTrans,
+//     handleUserAJ,
+//     handleUserJR,
+//   }),
+//   jrData: combineReducers({
+//     submitTextJarSaveJr,
+//     submitTextJarSpendJr,
+//     submitTextJarShareJr,
+//     flipJarLogJr,
+//     flipJarSaveJr,
+//     flipJarShareJr,
+//     flipJarSpendJr,
+//     logsJr,
+//     saveJarNoteJr,
+//     saveJarValueJr,
+//     saveJarTotalJr,
+//     spendJarNoteJr,
+//     spendJarValueJr,
+//     spendJarTotalJr,
+//     shareJarNoteJr,
+//     shareJarValueJr,
+//     shareJarTotalJr,
+//     pageTrans,
+//     handleUserAJ,
+//     handleUserJR,
+//   }),
+// });

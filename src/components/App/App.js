@@ -1,62 +1,58 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './App.css';
+import Jr from '../Users/Jr';
+import AJConnected from '../Users/AJConnected';
 import SaveJar from '../../containers/SaveJar';
 import SpendJar from '../../containers/SpendJar';
 import ShareJar from '../../containers/ShareJar';
 import LogJar from '../../containers/LogJar';
+import Nav from '../Nav/Nav';
 
-const handleWipe = () => {
-  this.setState(prevState => ({
-    pageTrans: !prevState.pageTrans,
-  }));
-
-  setTimeout(() => {
-    this.setState({
-      pageTrans: false,
-    });
-  }, 2000);
-};
-
-const App = props => {
-  const { pageTrans } = props;
+const AppConnected = props => {
+  const {
+    pageTrans, handleSetUserJRWipe, handleSetUserAJWipe, handleUserJR, handleUserAJ,
+  } = props;
   console.log('App props:', props);
   return (
-    <div className={pageTrans ? 'flex root menu-open' : 'flex root'}>
-      <div id="page-trans" />
-      <nav className="flex">
-        <div className="users flex--col">
-          <div className="user" id="jr" onClick={handleWipe}>
-            <span className="user__name">JR</span>
-            <div className="user__name--hover" />
+    <Router>
+      <div className={pageTrans ? 'flex root menu-open' : 'flex root'}>
+        <div id="page-trans" />
+        <Nav
+          handleUserJR={handleUserJR}
+          handleUserAJ={handleUserAJ}
+          handleSetUserJRWipe={() => handleSetUserJRWipe()}
+          handleSetUserAJWipe={() => handleSetUserAJWipe()}
+        />
+        <Switch>
+          <Route exact path="/aj" component={AJConnected} />
+          <Route exact path="/jr" component={Jr} />
+        </Switch>
+        <div className="jars">
+          <div className="flex jars__row">
+            <SaveJar />
+            <SpendJar />
           </div>
-          <div className="user" id="aj">
-            <span className="user__name user__name--deactive">AJ</span>
-            <div className="user__name--hover" />
+          <div className="flex jars__row">
+            <ShareJar />
+            <LogJar />
           </div>
-        </div>
-        <div className="user__subnav user__subnav--darkgray" />
-        <div className="user__subnav user__subnav--lightgray lattice-dollar-sign-bg" />
-      </nav>
-      <div className="jars">
-        <div className="flex jars__row">
-          <SaveJar />
-          <SpendJar />
-        </div>
-        <div className="flex jars__row">
-          <ShareJar />
-          <LogJar />
         </div>
       </div>
-    </div>
+    </Router>
   );
 };
 
-App.propTypes = {
+AppConnected.propTypes = {
   pageTrans: PropTypes.bool,
+  handleSetUserAJWipe: PropTypes.func,
+  handleSetUserJRWipe: PropTypes.func,
+  handleUserAJ: PropTypes.bool,
+  handleUserJR: PropTypes.bool,
 };
 
-export default App;
+export default AppConnected;
 
 // const App = connect(mapStateToProps, mapDispatchToProps)(AppConnected);
 // export default App;

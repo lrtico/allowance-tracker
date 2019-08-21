@@ -27,6 +27,9 @@ nav .users {
   padding: 0 18px;
   text-align: center;
 }
+nav a {
+  text-decoration: none;
+}
 nav .users .user .user__name--hover {
   position: relative;
 }
@@ -58,13 +61,19 @@ nav .users .user__name {
   letter-spacing: -0.25rem;
   transition: color 250ms 200ms;
 }
-nav .users .user:hover .user__name {
+nav .users .user:hover .user__name,
+nav .users .user:visited .user__name,
+nav .users .user:active .user__name {
   color: hotpink;
 }
-nav .users .user#jr:hover .user__name {
+nav .users .user#jr:hover .user__name,
+nav .users .user#jr:active .user__name,
+nav .users .user#jr:visited .user__name {
   color: orange;
 }
-nav .users .user#aj:hover .user__name {
+nav .users .user#aj:hover .user__name,
+nav .users .user#aj:active .user__name,
+nav .users .user#aj:visited .user__name {
   color: purple;
 }
 nav .users .user__name.user__name--deactive {
