@@ -1,14 +1,22 @@
 import { connect } from 'react-redux';
 import C from '../store/constants';
 import SpendJarConnected from '../components/Jars/SpendJarConnected';
-import { setSpendJarNote, setSpendJarValue, setSpendJarTotal } from '../store/actions';
+import {
+  setSpendJarNoteAj, setSpendJarValueAj, setSpendJarTotalAj,
+  setSpendJarNoteJr, setSpendJarValueJr, setSpendJarTotalJr,
+} from '../store/actions';
 
 const mapStateToProps = state => ({
   flipJarSpend: state.flipJarSpend,
   submitTextJarSpend: state.submitTextJarSpend,
-  spendJarNote: state.spendJarNote,
-  spendJarValue: state.spendJarValue,
-  spendJarTotal: state.spendJarTotal,
+  spendJarNoteAj: state.ajData.spendJarNoteAj,
+  spendJarValueAj: state.ajData.spendJarValueAj,
+  spendJarTotalAj: state.ajData.spendJarTotalAj,
+  spendJarNoteJr: state.jrData.spendJarNoteJr,
+  spendJarValueJr: state.jrData.spendJarValueJr,
+  spendJarTotalJr: state.jrData.spendJarTotalJr,
+  handleUserAJ: state.handleUserAJ,
+  handleUserJR: state.handleUserJR,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -27,30 +35,54 @@ const mapDispatchToProps = dispatch => ({
       type: C.CLOSE_SPEND_JAR,
     });
   },
-  handleSpendJarNoteChange(e) {
+  handleSpendJarNoteChangeAj(e) {
     dispatch(
-      setSpendJarNote(e.target.value),
+      setSpendJarNoteAj(e.target.value),
     );
   },
-  handleSpendJarValueChange(e) {
+  handleSpendJarNoteChangeJr(e) {
     dispatch(
-      setSpendJarValue(e.target.value),
+      setSpendJarNoteJr(e.target.value),
     );
   },
-  handleAddSpendJar({
-    spendJarValue, spendJarNote, spendJarTotal,
-  }) {
+  handleSpendJarValueChangeAj(e) {
     dispatch(
-      setSpendJarTotal('Spend jar', spendJarValue, spendJarNote, spendJarTotal),
+      setSpendJarValueAj(e.target.value),
     );
   },
-  handleMinusSpendJar({
-    spendJarValue, spendJarNote, spendJarTotal,
-  }) {
+  handleSpendJarValueChangeJr(e) {
+    dispatch(
+      setSpendJarValueJr(e.target.value),
+    );
+  },
+  handleAddSpendJarAj(spendJarValue, spendJarNote, spendJarTotal) {
+    dispatch(
+      setSpendJarTotalAj('Spend jar', spendJarValue, spendJarNote, spendJarTotal),
+    );
+  },
+  handleAddSpendJarJr(spendJarValue, spendJarNote, spendJarTotal) {
+    console.log(`
+    'handleAddSpendJar action':
+    spendJarValue: ${spendJarValue}
+    spendJarNote: ${spendJarNote}
+    spendJarTotal: ${spendJarTotal}
+    `);
+    dispatch(
+      setSpendJarTotalJr('Spend jar', spendJarValue, spendJarNote, spendJarTotal),
+    );
+  },
+  handleMinusSpendJarAj(spendJarValue, spendJarNote, spendJarTotal) {
     // We need to make the spendJarValue a negative number
     const negativeValue = spendJarValue * -1;
     dispatch(
-      setSpendJarTotal('Spend jar', negativeValue, spendJarNote, spendJarTotal),
+      setSpendJarTotalAj('Spend jar', negativeValue, spendJarNote, spendJarTotal),
+    );
+  },
+  handleMinusSpendJarJr(spendJarValue, spendJarNote, spendJarTotal) {
+    // We need to make the spendJarValue a negative number
+    const negativeValue = spendJarValue * -1;
+    dispatch(
+      setSpendJarTotalJr('Spend jar', negativeValue, spendJarNote, spendJarTotal),
     );
   },
 });

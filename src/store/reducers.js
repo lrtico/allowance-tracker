@@ -9,7 +9,9 @@ export const flipJarSave = (state = false, action) => {
       return true;
     case C.CLOSE_SAVE_JAR:
       return false;
-    case C.SET_SAVE_TOTAL:
+    case C.SET_SAVE_TOTAL_AJ:
+      return false;
+    case C.SET_SAVE_TOTAL_JR:
       return false;
     default:
       return state;
@@ -27,36 +29,65 @@ export const submitTextJarSave = (state = 'Add', action) => {
   }
 };
 
-export const saveJarNote = (state = '', action) => {
+export const saveJarNoteAj = (state = '', action) => {
   switch (action.type) {
-    case C.ADD_SAVE_NOTE:
+    case C.ADD_SAVE_NOTE_AJ:
       return action.payload;
-    case C.SET_SAVE_TOTAL:
+    case C.SET_SAVE_TOTAL_AJ:
       return '';
     default:
       return state;
   }
 };
 
-export const saveJarValue = (state = '', action) => {
+export const saveJarNoteJr = (state = '', action) => {
+  switch (action.type) {
+    case C.ADD_SAVE_NOTE_JR:
+      return action.payload;
+    case C.SET_SAVE_TOTAL_JR:
+      return '';
+    default:
+      return state;
+  }
+};
+
+export const saveJarValueAj = (state = '', action) => {
   // Every keypress, grab the value of the input and send it to the setSaveJarValue action creator
   // that then sends an action to this reducer to mutate state
   switch (action.type) {
-    case C.SET_SAVE_VALUE:
+    case C.SET_SAVE_VALUE_AJ:
       return action.payload;
-    case C.SET_SAVE_TOTAL:
+    case C.SET_SAVE_TOTAL_AJ:
       return '';
     default:
       return state;
   }
 };
 
-export const saveJarTotal = (state = 0, action) => {
+export const saveJarValueJr = (state = '', action) => {
+  switch (action.type) {
+    case C.SET_SAVE_VALUE_JR:
+      return action.payload;
+    case C.SET_SAVE_TOTAL_JR:
+      return '';
+    default:
+      return state;
+  }
+};
+
+export const saveJarTotalAj = (state = 0, action) => {
   // Use the SET_SAVE_TOTAL case to do 3 things:
   // 1. Add a case to logs reducer to add a new log
   // 2. Add a case to flipJarSave to close the save jar
   // 3. Below, update the total using an action creator to calculate new total
-  if (action.type === C.SET_SAVE_TOTAL) {
+  if (action.type === C.SET_SAVE_TOTAL_AJ) {
+    return action.payload.newTotal;
+  }
+  return state;
+};
+
+export const saveJarTotalJr = (state = 0, action) => {
+  if (action.type === C.SET_SAVE_TOTAL_JR) {
     return action.payload.newTotal;
   }
   return state;
@@ -68,9 +99,11 @@ export const flipJarSpend = (state = false, action) => {
       return true;
     case C.MINUS_SPEND_JAR:
       return true;
-    case C.SET_SPEND_TOTAL:
-      return false;
     case C.CLOSE_SPEND_JAR:
+      return false;
+    case C.SET_SPEND_TOTAL_AJ:
+      return false;
+    case C.SET_SPEND_TOTAL_JR:
       return false;
     default:
       return state;
@@ -88,30 +121,59 @@ export const submitTextJarSpend = (state = 'Add', action) => {
   }
 };
 
-export const spendJarNote = (state = '', action) => {
+export const spendJarNoteAj = (state = '', action) => {
   switch (action.type) {
-    case C.ADD_SPEND_NOTE:
+    case C.ADD_SPEND_NOTE_AJ:
       return action.payload;
-    case C.SET_SPEND_TOTAL:
+    case C.SET_SPEND_TOTAL_AJ:
       return '';
     default:
       return state;
   }
 };
 
-export const spendJarValue = (state = '', action) => {
+export const spendJarNoteJr = (state = '', action) => {
   switch (action.type) {
-    case C.SET_SPEND_VALUE:
+    case C.ADD_SPEND_NOTE_JR:
       return action.payload;
-    case C.SET_SPEND_TOTAL:
+    case C.SET_SPEND_TOTAL_JR:
       return '';
     default:
       return state;
   }
 };
 
-export const spendJarTotal = (state = 0, action) => {
-  if (action.type === C.SET_SPEND_TOTAL) {
+export const spendJarValueAj = (state = '', action) => {
+  switch (action.type) {
+    case C.SET_SPEND_VALUE_AJ:
+      return action.payload;
+    case C.SET_SPEND_TOTAL_AJ:
+      return '';
+    default:
+      return state;
+  }
+};
+
+export const spendJarValueJr = (state = '', action) => {
+  switch (action.type) {
+    case C.SET_SPEND_VALUE_JR:
+      return action.payload;
+    case C.SET_SPEND_TOTAL_JR:
+      return '';
+    default:
+      return state;
+  }
+};
+
+export const spendJarTotalAj = (state = 0, action) => {
+  if (action.type === C.SET_SPEND_TOTAL_AJ) {
+    return action.payload.newTotal;
+  }
+  return state;
+};
+
+export const spendJarTotalJr = (state = 0, action) => {
+  if (action.type === C.SET_SPEND_TOTAL_JR) {
     return action.payload.newTotal;
   }
   return state;
@@ -123,9 +185,11 @@ export const flipJarShare = (state = false, action) => {
       return true;
     case C.MINUS_SHARE_JAR:
       return true;
-    case C.SET_SHARE_TOTAL:
-      return false;
     case C.CLOSE_SHARE_JAR:
+      return false;
+    case C.SET_SHARE_TOTAL_AJ:
+      return false;
+    case C.SET_SHARE_TOTAL_JR:
       return false;
     default:
       return state;
@@ -143,30 +207,59 @@ export const submitTextJarShare = (state = 'Add', action) => {
   }
 };
 
-export const shareJarNote = (state = '', action) => {
+export const shareJarNoteAj = (state = '', action) => {
   switch (action.type) {
-    case C.ADD_SHARE_NOTE:
+    case C.ADD_SHARE_NOTE_AJ:
       return action.payload;
-    case C.SET_SHARE_TOTAL:
+    case C.SET_SHARE_TOTAL_AJ:
       return '';
     default:
       return state;
   }
 };
 
-export const shareJarValue = (state = '', action) => {
+export const shareJarNoteJr = (state = '', action) => {
   switch (action.type) {
-    case C.SET_SHARE_VALUE:
+    case C.ADD_SHARE_NOTE_JR:
       return action.payload;
-    case C.SET_SHARE_TOTAL:
+    case C.SET_SHARE_TOTAL_JR:
       return '';
     default:
       return state;
   }
 };
 
-export const shareJarTotal = (state = 0, action) => {
-  if (action.type === C.SET_SHARE_TOTAL) {
+export const shareJarValueAj = (state = '', action) => {
+  switch (action.type) {
+    case C.SET_SHARE_VALUE_AJ:
+      return action.payload;
+    case C.SET_SHARE_TOTAL_AJ:
+      return '';
+    default:
+      return state;
+  }
+};
+
+export const shareJarValueJr = (state = '', action) => {
+  switch (action.type) {
+    case C.SET_SHARE_VALUE_JR:
+      return action.payload;
+    case C.SET_SHARE_TOTAL_JR:
+      return '';
+    default:
+      return state;
+  }
+};
+
+export const shareJarTotalAj = (state = 0, action) => {
+  if (action.type === C.SET_SHARE_TOTAL_AJ) {
+    return action.payload.newTotal;
+  }
+  return state;
+};
+
+export const shareJarTotalJr = (state = 0, action) => {
+  if (action.type === C.SET_SHARE_TOTAL_JR) {
     return action.payload.newTotal;
   }
   return state;
@@ -183,7 +276,20 @@ export const flipJarLog = (state = false, action) => {
   }
 };
 
-export const logs = (state = [], action) => {
+export const logsAj = (state = [], action) => {
+  switch (action.type) {
+    case C.SET_SAVE_TOTAL:
+      return [...state, action.payload.log];
+    case C.SET_SPEND_TOTAL:
+      return [...state, action.payload.log];
+    case C.SET_SHARE_TOTAL:
+      return [...state, action.payload.log];
+    default:
+      return state;
+  }
+};
+
+export const logsJr = (state = [], action) => {
   switch (action.type) {
     case C.SET_SAVE_TOTAL:
       return [...state, action.payload.log];
@@ -198,9 +304,11 @@ export const logs = (state = [], action) => {
 
 export const pageTrans = (state = false, action) => {
   switch (action.type) {
-    case C.SET_USER_AJ:
-      return true;
-    case C.SET_USER_JR:
+    // case C.SET_USER_AJ:
+    //   return true;
+    // case C.SET_USER_JR:
+    //   return true;
+    case C.SHOW_WIPE:
       return true;
     case C.HIDE_WIPE:
       return false;
@@ -231,72 +339,62 @@ export const handleUserJR = (state = true, action) => {
   }
 };
 
+// export default combineReducers({
+//   submitTextJarSave,
+//   submitTextJarSpend,
+//   submitTextJarShare,
+//   flipJarLog,
+//   flipJarSave,
+//   flipJarShare,
+//   flipJarSpend,
+//   logs,
+//   saveJarNote,
+//   saveJarValue,
+//   saveJarTotal,
+//   spendJarNote,
+//   spendJarValue,
+//   spendJarTotal,
+//   shareJarNote,
+//   shareJarValue,
+//   shareJarTotal,
+//   pageTrans,
+//   handleUserAJ,
+//   handleUserJR,
+// });
+
 export default combineReducers({
-  submitTextJarSave,
-  submitTextJarSpend,
-  submitTextJarShare,
   flipJarLog,
   flipJarSave,
   flipJarShare,
   flipJarSpend,
-  logs,
-  saveJarNote,
-  saveJarValue,
-  saveJarTotal,
-  spendJarNote,
-  spendJarValue,
-  spendJarTotal,
-  shareJarNote,
-  shareJarValue,
-  shareJarTotal,
+  submitTextJarSave,
+  submitTextJarSpend,
+  submitTextJarShare,
   pageTrans,
   handleUserAJ,
   handleUserJR,
+  ajData: combineReducers({
+    logsAj,
+    saveJarNoteAj,
+    saveJarValueAj,
+    saveJarTotalAj,
+    spendJarNoteAj,
+    spendJarValueAj,
+    spendJarTotalAj,
+    shareJarNoteAj,
+    shareJarValueAj,
+    shareJarTotalAj,
+  }),
+  jrData: combineReducers({
+    logsJr,
+    saveJarNoteJr,
+    saveJarValueJr,
+    saveJarTotalJr,
+    spendJarNoteJr,
+    spendJarValueJr,
+    spendJarTotalJr,
+    shareJarNoteJr,
+    shareJarValueJr,
+    shareJarTotalJr,
+  }),
 });
-
-// export default combineReducers({
-//   ajData: combineReducers({
-//     submitTextJarSaveAj,
-//     submitTextJarSpendAj,
-//     submitTextJarShareAj,
-//     flipJarLogAj,
-//     flipJarSaveAj,
-//     flipJarShareAj,
-//     flipJarSpendAj,
-//     logsAj,
-//     saveJarNoteAj,
-//     saveJarValueAj,
-//     saveJarTotalAj,
-//     spendJarNoteAj,
-//     spendJarValueAj,
-//     spendJarTotalAj,
-//     shareJarNoteAj,
-//     shareJarValueAj,
-//     shareJarTotalAj,
-//     pageTrans,
-//     handleUserAJ,
-//     handleUserJR,
-//   }),
-//   jrData: combineReducers({
-//     submitTextJarSaveJr,
-//     submitTextJarSpendJr,
-//     submitTextJarShareJr,
-//     flipJarLogJr,
-//     flipJarSaveJr,
-//     flipJarShareJr,
-//     flipJarSpendJr,
-//     logsJr,
-//     saveJarNoteJr,
-//     saveJarValueJr,
-//     saveJarTotalJr,
-//     spendJarNoteJr,
-//     spendJarValueJr,
-//     spendJarTotalJr,
-//     shareJarNoteJr,
-//     shareJarValueJr,
-//     shareJarTotalJr,
-//     pageTrans,
-//     handleUserAJ,
-//     handleUserJR,
-//   }),
-// });

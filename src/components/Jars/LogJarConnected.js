@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import C from '../../store/constants';
 import Button from '../Buttons/Button';
 import JarLabel from '../JarLabel/JarLabel';
 
@@ -7,6 +9,7 @@ const LogJarConnected = (props) => {
   const {
     flipJarLog, handleFlipJarLog, handleClosingLog, logs,
   } = props;
+  console.log('LogJarConnected props', props);
   return (
     <div
       className={
@@ -66,6 +69,25 @@ const LogJarConnected = (props) => {
   );
 };
 
+const mapStateToProps = state => ({
+  flipJarLog: state.flipJarLog,
+  // logs: state.logs,
+  // ajData: state.ajData,
+});
+
+const mapDispatchToProps = dispatch => ({
+  handleFlipJarLog() {
+    dispatch({
+      type: C.SHOW_LOG,
+    });
+  },
+  handleClosingLog() {
+    dispatch({
+      type: C.CLOSE_LOG,
+    });
+  },
+});
+
 LogJarConnected.propTypes = {
   flipJarLog: PropTypes.bool,
   handleFlipJarLog: PropTypes.func,
@@ -73,4 +95,4 @@ LogJarConnected.propTypes = {
   logs: PropTypes.array,
 };
 
-export default LogJarConnected;
+export default connect(mapStateToProps, mapDispatchToProps)(LogJarConnected);

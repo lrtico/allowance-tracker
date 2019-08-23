@@ -11,26 +11,38 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   handleSetUserAJWipe() {
     dispatch({
-      type: C.SET_USER_AJ,
+      type: C.SHOW_WIPE,
     });
 
     setTimeout(() => {
       dispatch({
         type: C.HIDE_WIPE,
       });
-    }, 2000);
+    }, 1500);
+
+    setTimeout(() => {
+      dispatch({
+        type: C.SET_USER_AJ,
+      });
+    }, 750);
   },
 
   handleSetUserJRWipe() {
     dispatch({
-      type: C.SET_USER_JR,
+      type: C.SHOW_WIPE,
     });
 
     setTimeout(() => {
       dispatch({
         type: C.HIDE_WIPE,
       });
-    }, 2000);
+    }, 1500);
+
+    setTimeout(() => {
+      dispatch({
+        type: C.SET_USER_JR,
+      });
+    }, 750);
   },
 });
 

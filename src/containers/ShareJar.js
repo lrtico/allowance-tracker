@@ -1,14 +1,22 @@
 import { connect } from 'react-redux';
 import C from '../store/constants';
 import ShareJarConnected from '../components/Jars/ShareJarConnected';
-import { setShareJarNote, setShareJarValue, setShareJarTotal } from '../store/actions';
+import {
+  setShareJarNoteAj, setShareJarValueAj, setShareJarTotalAj,
+  setShareJarNoteJr, setShareJarValueJr, setShareJarTotalJr,
+} from '../store/actions';
 
 const mapStateToProps = state => ({
   flipJarShare: state.flipJarShare,
   submitTextJarShare: state.submitTextJarShare,
-  shareJarNote: state.shareJarNote,
-  shareJarValue: state.shareJarValue,
-  shareJarTotal: state.shareJarTotal,
+  shareJarNoteAj: state.ajData.shareJarNoteAj,
+  shareJarValueAj: state.ajData.shareJarValueAj,
+  shareJarTotalAj: state.ajData.shareJarTotalAj,
+  shareJarNoteJr: state.jrData.shareJarNoteJr,
+  shareJarValueJr: state.jrData.shareJarValueJr,
+  shareJarTotalJr: state.jrData.shareJarTotalJr,
+  handleUserAJ: state.handleUserAJ,
+  handleUserJR: state.handleUserJR,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -27,30 +35,54 @@ const mapDispatchToProps = dispatch => ({
       type: C.CLOSE_SHARE_JAR,
     });
   },
-  handleShareJarNoteChange(e) {
+  handleShareJarNoteChangeAj(e) {
     dispatch(
-      setShareJarNote(e.target.value),
+      setShareJarNoteAj(e.target.value),
     );
   },
-  handleShareJarValueChange(e) {
+  handleShareJarValueChangeAj(e) {
     dispatch(
-      setShareJarValue(e.target.value),
+      setShareJarValueAj(e.target.value),
     );
   },
-  handleAddShareJar({
-    shareJarValue, shareJarNote, shareJarTotal,
-  }) {
+  handleAddShareJarAj(shareJarValue, shareJarNote, shareJarTotal) {
     dispatch(
-      setShareJarTotal('Share jar', shareJarValue, shareJarNote, shareJarTotal),
+      setShareJarTotalAj('Share jar', shareJarValue, shareJarNote, shareJarTotal),
     );
   },
-  handleMinusShareJar({
-    shareJarValue, shareJarNote, shareJarTotal,
-  }) {
+  handleMinusShareJarAj(shareJarValue, shareJarNote, shareJarTotal) {
     // We need to make the shareJarValue a negative number
     const negativeValue = shareJarValue * -1;
     dispatch(
-      setShareJarTotal('Share jar', negativeValue, shareJarNote, shareJarTotal),
+      setShareJarTotalAj('Share jar', negativeValue, shareJarNote, shareJarTotal),
+    );
+  },
+  handleShareJarNoteChangeJr(e) {
+    dispatch(
+      setShareJarNoteJr(e.target.value),
+    );
+  },
+  handleShareJarValueChangeJr(e) {
+    dispatch(
+      setShareJarValueJr(e.target.value),
+    );
+  },
+  handleAddShareJarJr(shareJarValue, shareJarNote, shareJarTotal) {
+    console.log(`
+    'handleAddSpendJar action':
+    spendJarValue: ${shareJarValue}
+    spendJarNote: ${shareJarNote}
+    spendJarTotal: ${shareJarTotal}
+    `);
+    dispatch(
+      setShareJarTotalJr('Share jar', shareJarValue, shareJarNote, shareJarTotal),
+    );
+  },
+  handleMinusShareJarJr(shareJarValue, shareJarNote, shareJarTotal) {
+    // We need to make the shareJarValue a negative number
+    const negativeValue = shareJarValue * -1;
+    dispatch(
+      setShareJarTotalJr('Share jar', negativeValue, shareJarNote, shareJarTotal),
     );
   },
 });

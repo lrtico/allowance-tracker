@@ -89,7 +89,7 @@ nav .user__subnav {
   height: 100vh;
 }
 nav .user__subnav--darkgray {
-  background-color: #cccccc;
+  background-color: #e8e8e8;
   flex: 2 1 auto;
 }
 nav .user__subnav--lightgray {
@@ -156,6 +156,9 @@ nav .user__subnav.user__subnav--lightgray.lattice-dollar-sign-bg {
 .jar .jar__front {
   transform: rotateY(0deg);
   z-index: 2;
+}
+.jar__front--log .jar__amount > span:first-of-type {
+  opacity: 1;
 }
 
 /*
@@ -345,7 +348,7 @@ Page transition
   transition: all 500ms cubic-bezier(0.61, 0.31, 0.04, 1.18);
 }
 .menu-open #page-trans {
-  animation: page-wipe 2000ms forwards cubic-bezier(0.79, 0, 0.27, 0.99);
+  animation: page-wipe 1500ms forwards cubic-bezier(0.79, 0, 0.27, 0.99);
 }
 
 @keyframes page-wipe {

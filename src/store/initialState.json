@@ -3,39 +3,75 @@
   "flipJarSave": false,
   "flipJarShare": false,
   "flipJarSpend": false,
-  "logs": [
-    {
-      "amount": "+3",
-      "date": "Sat Aug 10 2019",
-      "jar": "Spend",
-      "note": "Allowance",
-      "total": "3"
-    },
-    {
-      "amount": "+2.50",
-      "date": "Sun Aug 11 2019",
-      "jar": "Spend",
-      "note": "Mopped floors",
-      "total": "5.5"
-    },
-    {
-      "amount": "-1",
-      "date": "Sun Aug 18 2019",
-      "jar": "Spend",
-      "note": "Bubble gum",
-      "total": "4.5"
-    }
-  ],
-  "saveJarNote": "",
-  "saveJarTotal": 0,
-  "saveJarValue": "",
-  "shareJarNote": "",
-  "shareJarTotal": 0,
-  "shareJarValue": "",
-  "spendJarNote": "",
-  "spendJarTotal": 4.5,
-  "spendJarValue": "",
   "submitTextJarSave": "Add",
   "submitTextJarShare": "Add",
-  "submitTextJarSpend": "Add"
+  "submitTextJarSpend": "Add",
+  "ajData": {
+    "logs": [
+      {
+        "amount": "+3",
+        "date": "Sat Aug 10 2019",
+        "jar": "Spend",
+        "note": "AJ's Allowance",
+        "total": "3"
+      },
+      {
+        "amount": "+2.50",
+        "date": "Sun Aug 11 2019",
+        "jar": "Spend",
+        "note": "AJ Mopped floors",
+        "total": "5.5"
+      },
+      {
+        "amount": "-1",
+        "date": "Sun Aug 18 2019",
+        "jar": "Spend",
+        "note": "AJ bought some Bubble gum",
+        "total": "4.5"
+      }
+    ],
+    "saveJarNote": "",
+    "saveJarTotal": 0,
+    "saveJarValue": "",
+    "shareJarNote": "",
+    "shareJarTotal": 0,
+    "shareJarValue": "",
+    "spendJarNote": "",
+    "spendJarTotal": 4.5,
+    "spendJarValue": ""
+  },
+  "jrData": {
+    "logs": [
+      {
+        "amount": "+3",
+        "date": "Sat Aug 10 2019",
+        "jar": "Spend",
+        "note": "Jr's Allowance",
+        "total": "3"
+      },
+      {
+        "amount": "+2.50",
+        "date": "Sun Aug 11 2019",
+        "jar": "Spend",
+        "note": "Jr Mopped floors",
+        "total": "5.5"
+      },
+      {
+        "amount": "-1",
+        "date": "Sun Aug 18 2019",
+        "jar": "Spend",
+        "note": "Jr bought Bubble gum",
+        "total": "4.5"
+      }
+    ],
+    "saveJarNote": "",
+    "saveJarTotal": 0,
+    "saveJarValue": "",
+    "shareJarNote": "",
+    "shareJarTotal": 0,
+    "shareJarValue": "",
+    "spendJarNote": "",
+    "spendJarTotal": 4.5,
+    "spendJarValue": ""
+  }
 }

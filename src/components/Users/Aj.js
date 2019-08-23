@@ -1,31 +1,37 @@
 import React from 'react'
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import SaveJar from '../../containers/SaveJar';
 import SpendJar from '../../containers/SpendJar';
 import ShareJar from '../../containers/ShareJar';
-import LogJar from '../../containers/LogJar';
+import LogJarConnected from '../Jars/LogJarConnected';
+import SaveJarConnected from '../Jars/SaveJarConnected';
 
-const AJConnected = props => {
-  const { ajData } = props;
+const Aj = props => {
+  const { ajData: { logsAj } } = props;
+  console.log('Aj\'s props', props);
   return (
     <div className="jars">
       <div className="flex jars__row">
-        <SaveJar data={ajData} />
-        <SpendJar data={ajData} />
+        <SaveJarConnected />
+        <SpendJar />
       </div>
       <div className="flex jars__row">
-        <ShareJar data={ajData} />
-        <LogJar data={ajData} />
+        <ShareJar />
+        <LogJarConnected logs={logsAj} />
       </div>
     </div>
   );
 };
 
-AJConnected.propTypes = {
+const mapStateToProps = state => ({
+  ajData: state.ajData,
+});
+
+Aj.propTypes = {
   ajData: PropTypes.object,
 };
 
-export default AJConnected;
+export default connect(mapStateToProps)(Aj);
 
 // The Plan:
 // Refactor the combinedReducer to create a tree with two branches (users)

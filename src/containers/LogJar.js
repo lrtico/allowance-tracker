@@ -4,7 +4,8 @@ import LogJarConnected from '../components/Jars/LogJarConnected';
 
 const mapStateToProps = state => ({
   flipJarLog: state.flipJarLog,
-  logs: state.logs,
+  // logs: state.logs,
+  // ajData: state.ajData,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -9,10 +9,17 @@ import JarPreviousTotal from '../JarPreviousTotal/JarPreviousTotal';
 
 const SpendJarConnected = (props) => {
   const {
-    flipJarSpend, handleAddButtonTextJarSpend, handleMinusButtonTextJarSpend, spendJarTotal,
-    cancelSpendJarChange, spendJarNote, handleSpendJarNoteChange, submitTextJarSpend,
-    spendJarValue, handleSpendJarValueChange, handleAddSpendJar, handleMinusSpendJar,
+    flipJarSpend, handleAddButtonTextJarSpend, handleMinusButtonTextJarSpend,
+    cancelSpendJarChange, submitTextJarSpend,
+    handleSpendJarValueChangeAj, handleSpendJarNoteChangeAj,
+    handleAddSpendJarAj, handleMinusSpendJarAj,
+    handleSpendJarValueChangeJr, handleSpendJarNoteChangeJr,
+    handleAddSpendJarJr, handleMinusSpendJarJr,
+    handleUserJR, handleUserAJ,
+    spendJarValueAj, spendJarNoteAj, spendJarTotalAj,
+    spendJarValueJr, spendJarNoteJr, spendJarTotalJr,
   } = props;
+  console.log('SpendJarConnected props', props);
   return (
     <div
       className={
@@ -34,7 +41,12 @@ const SpendJarConnected = (props) => {
             changeButtonText={handleMinusButtonTextJarSpend}
           />
         </div>
-        <JarAmount jarTotal={spendJarTotal} />
+        <JarAmount jarTotal={
+          handleUserAJ
+            ? spendJarTotalAj
+            : spendJarTotalJr
+          }
+        />
         <JarLabel jarLabel="Spend" />
       </div>
       <div className="jar__back jar__back--spend">
@@ -47,8 +59,16 @@ const SpendJarConnected = (props) => {
             />
           </div>
           <AddNote
-            jarValue={spendJarNote}
-            handleJarValueChange={handleSpendJarNoteChange}
+            jarValue={
+              handleUserAJ
+                ? spendJarNoteAj
+                : spendJarNoteJr
+            }
+            handleJarValueChange={
+              handleUserAJ
+                ? handleSpendJarNoteChangeAj
+                : handleSpendJarNoteChangeJr
+            }
           />
         </div>
         <div>
@@ -61,8 +81,16 @@ const SpendJarConnected = (props) => {
               <input
                 maxLength="6"
                 type="text"
-                value={spendJarValue}
-                onChange={handleSpendJarValueChange}
+                value={
+                  handleUserAJ
+                    ? spendJarValueAj
+                    : spendJarValueJr
+                }
+                onChange={
+                  handleUserAJ
+                    ? handleSpendJarValueChangeAj
+                    : handleSpendJarValueChangeJr
+                }
               />
             </div>
           </div>
@@ -70,12 +98,21 @@ const SpendJarConnected = (props) => {
             type="submit"
             value={submitTextJarSpend}
             onClick={
-              submitTextJarSpend === 'Add'
-                ? () => handleAddSpendJar(props)
-                : () => handleMinusSpendJar(props)
+              submitTextJarSpend === 'Add' && handleUserAJ
+                ? () => handleAddSpendJarAj(spendJarValueAj, spendJarNoteAj, spendJarTotalAj)
+                : submitTextJarSpend === 'Minus' && handleUserAJ
+                  ? () => handleMinusSpendJarAj(spendJarValueAj, spendJarNoteAj, spendJarTotalAj)
+                  : submitTextJarSpend === 'Add' && handleUserJR
+                    ? () => handleAddSpendJarJr(spendJarValueJr, spendJarNoteJr, spendJarTotalJr)
+                    : () => handleMinusSpendJarJr(spendJarValueJr, spendJarNoteJr, spendJarTotalJr)
             }
           />
-          <JarPreviousTotal jarPreviousTotal={spendJarTotal} />
+          <JarPreviousTotal jarPreviousTotal={
+            handleUserAJ
+              ? spendJarTotalAj
+              : spendJarTotalJr
+            }
+          />
         </div>
       </div>
     </div>
@@ -88,13 +125,22 @@ SpendJarConnected.propTypes = {
   handleAddButtonTextJarSpend: PropTypes.func,
   handleMinusButtonTextJarSpend: PropTypes.func,
   cancelSpendJarChange: PropTypes.func,
-  handleSpendJarNoteChange: PropTypes.func,
-  handleSpendJarValueChange: PropTypes.func,
-  handleAddSpendJar: PropTypes.func,
-  handleMinusSpendJar: PropTypes.func,
-  spendJarNote: PropTypes.string,
-  spendJarValue: PropTypes.string,
-  spendJarTotal: PropTypes.number,
+  handleSpendJarNoteChangeAj: PropTypes.func,
+  handleSpendJarValueChangeAj: PropTypes.func,
+  handleAddSpendJarAj: PropTypes.func,
+  handleMinusSpendJarAj: PropTypes.func,
+  spendJarNoteAj: PropTypes.string,
+  spendJarValueAj: PropTypes.string,
+  spendJarTotalAj: PropTypes.number,
+  handleSpendJarNoteChangeJr: PropTypes.func,
+  handleSpendJarValueChangeJr: PropTypes.func,
+  handleAddSpendJarJr: PropTypes.func,
+  handleMinusSpendJarJr: PropTypes.func,
+  spendJarNoteJr: PropTypes.string,
+  spendJarValueJr: PropTypes.string,
+  spendJarTotalJr: PropTypes.number,
+  handleUserAJ: PropTypes.bool,
+  handleUserJR: PropTypes.bool,
 };
 
 export default SpendJarConnected;

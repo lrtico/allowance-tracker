@@ -9,10 +9,17 @@ import JarPreviousTotal from '../JarPreviousTotal/JarPreviousTotal';
 
 const ShareJarConnected = (props) => {
   const {
-    flipJarShare, handleAddButtonTextJarShare, handleMinusButtonTextJarShare, shareJarTotal,
-    cancelShareJarChange, shareJarNote, handleShareJarNoteChange, submitTextJarShare,
-    shareJarValue, handleShareJarValueChange, handleAddShareJar, handleMinusShareJar,
+    flipJarShare, handleAddButtonTextJarShare, handleMinusButtonTextJarShare,
+    cancelShareJarChange, submitTextJarShare,
+    handleShareJarValueChangeAj, handleShareJarNoteChangeAj,
+    handleAddShareJarAj, handleMinusShareJarAj,
+    handleShareJarValueChangeJr, handleShareJarNoteChangeJr,
+    handleAddShareJarJr, handleMinusShareJarJr,
+    handleUserJR, handleUserAJ,
+    shareJarValueAj, shareJarNoteAj, shareJarTotalAj,
+    shareJarValueJr, shareJarNoteJr, shareJarTotalJr,
   } = props;
+  console.log('ShareJarConnected props', props);
   return (
     <div
       className={
@@ -34,7 +41,12 @@ const ShareJarConnected = (props) => {
             changeButtonText={handleMinusButtonTextJarShare}
           />
         </div>
-        <JarAmount jarTotal={shareJarTotal} />
+        <JarAmount jarTotal={
+            handleUserAJ
+              ? shareJarTotalAj
+              : shareJarTotalJr
+          }
+        />
         <JarLabel jarLabel="Share" />
       </div>
       <div className="jar__back jar__back--share">
@@ -47,8 +59,16 @@ const ShareJarConnected = (props) => {
             />
           </div>
           <AddNote
-            jarValue={shareJarNote}
-            handleJarValueChange={handleShareJarNoteChange}
+            jarValue={
+              handleUserAJ
+                ? shareJarNoteAj
+                : shareJarNoteJr
+            }
+            handleJarValueChange={
+              handleUserAJ
+                ? handleShareJarNoteChangeAj
+                : handleShareJarNoteChangeJr
+            }
           />
         </div>
         <div>
@@ -61,8 +81,16 @@ const ShareJarConnected = (props) => {
               <input
                 maxLength="6"
                 type="text"
-                value={shareJarValue}
-                onChange={handleShareJarValueChange}
+                value={
+                  handleUserAJ
+                    ? shareJarValueAj
+                    : shareJarValueJr
+                }
+                onChange={
+                  handleUserAJ
+                    ? handleShareJarValueChangeAj
+                    : handleShareJarValueChangeJr
+                }
               />
             </div>
           </div>
@@ -70,12 +98,21 @@ const ShareJarConnected = (props) => {
             type="submit"
             value={submitTextJarShare}
             onClick={
-              submitTextJarShare === 'Add'
-                ? () => handleAddShareJar(props)
-                : () => handleMinusShareJar(props)
+              submitTextJarShare === 'Add' && handleUserAJ
+                ? () => handleAddShareJarAj(shareJarValueAj, shareJarNoteAj, shareJarTotalAj)
+                : submitTextJarShare === 'Minus' && handleUserAJ
+                  ? () => handleMinusShareJarAj(shareJarValueAj, shareJarNoteAj, shareJarTotalAj)
+                  : submitTextJarShare === 'Add' && handleUserJR
+                    ? () => handleAddShareJarJr(shareJarValueJr, shareJarNoteJr, shareJarTotalJr)
+                    : () => handleMinusShareJarJr(shareJarValueJr, shareJarNoteJr, shareJarTotalJr)
             }
           />
-          <JarPreviousTotal jarPreviousTotal={shareJarTotal} />
+          <JarPreviousTotal jarPreviousTotal={
+            handleUserAJ
+              ? shareJarTotalAj
+              : shareJarTotalJr
+            }
+          />
         </div>
       </div>
     </div>
@@ -88,13 +125,22 @@ ShareJarConnected.propTypes = {
   handleAddButtonTextJarShare: PropTypes.func,
   handleMinusButtonTextJarShare: PropTypes.func,
   cancelShareJarChange: PropTypes.func,
-  handleShareJarNoteChange: PropTypes.func,
-  handleShareJarValueChange: PropTypes.func,
-  handleAddShareJar: PropTypes.func,
-  handleMinusShareJar: PropTypes.func,
-  shareJarNote: PropTypes.string,
-  shareJarValue: PropTypes.string,
-  shareJarTotal: PropTypes.number,
+  handleShareJarNoteChangeAj: PropTypes.func,
+  handleShareJarValueChangeAj: PropTypes.func,
+  handleAddShareJarAj: PropTypes.func,
+  handleMinusShareJarAj: PropTypes.func,
+  shareJarNoteAj: PropTypes.string,
+  shareJarValueAj: PropTypes.string,
+  shareJarTotalAj: PropTypes.number,
+  handleShareJarNoteChangeJr: PropTypes.func,
+  handleShareJarValueChangeJr: PropTypes.func,
+  handleAddShareJarJr: PropTypes.func,
+  handleMinusShareJarJr: PropTypes.func,
+  shareJarNoteJr: PropTypes.string,
+  shareJarValueJr: PropTypes.string,
+  shareJarTotalJr: PropTypes.number,
+  handleUserAJ: PropTypes.bool,
+  handleUserJR: PropTypes.bool,
 };
 
 export default ShareJarConnected;
