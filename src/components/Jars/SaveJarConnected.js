@@ -208,6 +208,32 @@ const mapDispatchToProps = dispatch => ({
       setSaveJarTotalJr('Save jar', negativeValue, saveJarNote, saveJarTotal),
     );
   },
+  handleAllowanceAddSaveJarJr(saveJarTotal) {
+    const allowanceValue = '1';
+    const allowanceNote = 'Weekly save jar allowance deposit';
+    console.log(`
+    'handleAllowanceAddSaveJarJr action':
+    saveJarValue: ${allowanceValue}
+    saveJarNote: ${allowanceNote}
+    saveJarTotal: ${saveJarTotal}
+    `);
+    dispatch(
+      setSaveJarTotalJr('Save jar', allowanceValue, allowanceNote, saveJarTotal),
+    );
+  },
+  handleAllowanceAddSaveJarAj(saveJarTotal) {
+    const allowanceValue = '1';
+    const allowanceNote = 'Weekly save jar allowance deposit';
+    console.log(`
+    'handleAllowanceAddSaveJarAj action':
+    saveJarValue: ${allowanceValue}
+    saveJarNote: ${allowanceNote}
+    saveJarTotal: ${saveJarTotal}
+    `);
+    dispatch(
+      setSaveJarTotalAj('Save jar', allowanceValue, allowanceNote, saveJarTotal),
+    );
+  },
 });
 
 SaveJarConnected.propTypes = {
@@ -224,9 +250,6 @@ SaveJarConnected.propTypes = {
   handleSaveJarValueChangeJr: PropTypes.func,
   handleAddSaveJarJr: PropTypes.func,
   handleMinusSaveJarJr: PropTypes.func,
-  saveJarNote: PropTypes.string,
-  saveJarValue: PropTypes.string,
-  saveJarTotal: PropTypes.number,
   handleUserAJ: PropTypes.bool,
   handleUserJR: PropTypes.bool,
   saveJarValueJr: PropTypes.string,
@@ -235,6 +258,8 @@ SaveJarConnected.propTypes = {
   saveJarValueAj: PropTypes.string,
   saveJarNoteAj: PropTypes.string,
   saveJarTotalAj: PropTypes.number,
+  handleAllowanceAddSaveJarJr: PropTypes.func,
+  handleAllowanceAddSaveJarAj: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SaveJarConnected);

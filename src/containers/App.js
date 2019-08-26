@@ -6,6 +6,9 @@ const mapStateToProps = state => ({
   pageTrans: state.pageTrans,
   handleUserAJ: state.handleUserAJ,
   handleUserJR: state.handleUserJR,
+  saveJarTotalJr: state.jrData.saveJarTotalJr,
+  spendJarTotalJr: state.jrData.spendJarTotalJr,
+  shareJarTotalJr: state.jrData.shareJarTotalJr,
 });
 
 const mapDispatchToProps = dispatch => ({

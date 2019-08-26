@@ -85,6 +85,32 @@ const mapDispatchToProps = dispatch => ({
       setShareJarTotalJr('Share jar', negativeValue, shareJarNote, shareJarTotal),
     );
   },
+  handleAllowanceAddShareJarJr(shareJarTotal) {
+    const allowanceValue = '0.50';
+    const allowanceNote = 'Weekly share jar allowance deposit';
+    console.log(`
+    'handleAllowanceAddShareJarJr action':
+    shareJarValue: ${allowanceValue}
+    shareJarNote: ${allowanceNote}
+    shareJarTotal: ${shareJarTotal}
+    `);
+    dispatch(
+      setShareJarTotalJr('Share jar', allowanceValue, allowanceNote, shareJarTotal),
+    );
+  },
+  handleAllowanceAddShareJarAj(shareJarTotal) {
+    const allowanceValue = '0.25';
+    const allowanceNote = 'Weekly share jar allowance deposit';
+    console.log(`
+    'handleAllowanceAddShareJarAj action':
+    shareJarValue: ${allowanceValue}
+    shareJarNote: ${allowanceNote}
+    shareJarTotal: ${shareJarTotal}
+    `);
+    dispatch(
+      setShareJarTotalAj('Share jar', allowanceValue, allowanceNote, shareJarTotal),
+    );
+  },
 });
 
 const ShareJar = connect(mapStateToProps, mapDispatchToProps)(ShareJarConnected);

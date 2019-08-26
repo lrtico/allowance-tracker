@@ -278,11 +278,11 @@ export const flipJarLog = (state = false, action) => {
 
 export const logsAj = (state = [], action) => {
   switch (action.type) {
-    case C.SET_SAVE_TOTAL:
+    case C.SET_SAVE_TOTAL_AJ:
       return [...state, action.payload.log];
-    case C.SET_SPEND_TOTAL:
+    case C.SET_SPEND_TOTAL_AJ:
       return [...state, action.payload.log];
-    case C.SET_SHARE_TOTAL:
+    case C.SET_SHARE_TOTAL_AJ:
       return [...state, action.payload.log];
     default:
       return state;
@@ -291,11 +291,11 @@ export const logsAj = (state = [], action) => {
 
 export const logsJr = (state = [], action) => {
   switch (action.type) {
-    case C.SET_SAVE_TOTAL:
+    case C.SET_SAVE_TOTAL_JR:
       return [...state, action.payload.log];
-    case C.SET_SPEND_TOTAL:
+    case C.SET_SPEND_TOTAL_JR:
       return [...state, action.payload.log];
-    case C.SET_SHARE_TOTAL:
+    case C.SET_SHARE_TOTAL_JR:
       return [...state, action.payload.log];
     default:
       return state;
