@@ -141,8 +141,6 @@ ShareJarConnected.propTypes = {
   shareJarTotalJr: PropTypes.number,
   handleUserAJ: PropTypes.bool,
   handleUserJR: PropTypes.bool,
-  handleAllowanceAddShareJarAj: PropTypes.func,
-  handleAllowanceAddShareJarJr: PropTypes.func,
 };
 
 export default ShareJarConnected;

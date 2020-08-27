@@ -1,14 +1,22 @@
 import { connect } from 'react-redux';
 import C from '../store/constants';
 import SaveJarConnected from '../components/Jars/SaveJarConnected';
-import { setSaveJarNote, setSaveJarValue, setSaveJarTotal } from '../store/actions';
+import {
+  setSaveJarNoteAj, setSaveJarValueAj, setSaveJarTotalAj,
+  setSaveJarNoteJr, setSaveJarValueJr, setSaveJarTotalJr,
+} from '../store/actions';
 
 const mapStateToProps = state => ({
   flipJarSave: state.flipJarSave,
   submitTextJarSave: state.submitTextJarSave,
-  saveJarNote: state.saveJarNote,
-  saveJarValue: state.saveJarValue,
-  saveJarTotal: state.saveJarTotal,
+  saveJarNoteAj: state.ajData.saveJarNoteAj,
+  saveJarValueAj: state.ajData.saveJarValueAj,
+  saveJarTotalAj: state.ajData.saveJarTotalAj,
+  saveJarNoteJr: state.jrData.saveJarNoteJr,
+  saveJarValueJr: state.jrData.saveJarValueJr,
+  saveJarTotalJr: state.jrData.saveJarTotalJr,
+  handleUserAJ: state.handleUserAJ,
+  handleUserJR: state.handleUserJR,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -27,30 +35,60 @@ const mapDispatchToProps = dispatch => ({
       type: C.CLOSE_SAVE_JAR,
     });
   },
-  handleSaveJarNoteChange(e) {
+  handleSaveJarNoteChangeAj(e) {
     dispatch(
-      setSaveJarNote(e.target.value),
+      setSaveJarNoteAj(e.target.value),
     );
   },
-  handleSaveJarValueChange(e) {
+  handleSaveJarNoteChangeJr(e) {
     dispatch(
-      setSaveJarValue(e.target.value),
+      setSaveJarNoteJr(e.target.value),
     );
   },
-  handleAddSaveJar({
-    saveJarValue, saveJarNote, saveJarTotal,
-  }) {
+  handleSaveJarValueChangeAj(e) {
     dispatch(
-      setSaveJarTotal('Save jar', saveJarValue, saveJarNote, saveJarTotal),
+      setSaveJarValueAj(e.target.value),
     );
   },
-  handleMinusSaveJar({
-    saveJarValue, saveJarNote, saveJarTotal,
-  }) {
+  handleSaveJarValueChangeJr(e) {
+    dispatch(
+      setSaveJarValueJr(e.target.value),
+    );
+  },
+  handleAddSaveJarAj(saveJarValue, saveJarNote, saveJarTotal) {
+    console.log(`
+    'handleAddSaveJar action':
+    saveJarValue: ${saveJarValue}
+    saveJarNote: ${saveJarNote}
+    saveJarTotal: ${saveJarTotal}
+    `);
+    dispatch(
+      setSaveJarTotalAj('Save jar', saveJarValue, saveJarNote, saveJarTotal),
+    );
+  },
+  handleAddSaveJarJr(saveJarValue, saveJarNote, saveJarTotal) {
+    console.log(`
+    'handleAddSaveJar action':
+    saveJarValue: ${saveJarValue}
+    saveJarNote: ${saveJarNote}
+    saveJarTotal: ${saveJarTotal}
+    `);
+    dispatch(
+      setSaveJarTotalJr('Save jar', saveJarValue, saveJarNote, saveJarTotal),
+    );
+  },
+  handleMinusSaveJarAj(saveJarValue, saveJarNote, saveJarTotal) {
     // We need to make the saveJarValue a negative number
     const negativeValue = saveJarValue * -1;
     dispatch(
-      setSaveJarTotal('Save jar', negativeValue, saveJarNote, saveJarTotal),
+      setSaveJarTotalAj('Save jar', negativeValue, saveJarNote, saveJarTotal),
+    );
+  },
+  handleMinusSaveJarJr(saveJarValue, saveJarNote, saveJarTotal) {
+    // We need to make the saveJarValue a negative number
+    const negativeValue = saveJarValue * -1;
+    dispatch(
+      setSaveJarTotalJr('Save jar', negativeValue, saveJarNote, saveJarTotal),
     );
   },
 });

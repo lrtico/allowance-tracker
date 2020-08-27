@@ -85,32 +85,6 @@ const mapDispatchToProps = dispatch => ({
       setSpendJarTotalJr('Spend jar', negativeValue, spendJarNote, spendJarTotal),
     );
   },
-  handleAllowanceAddSpendJarJr(spendJarTotal) {
-    const allowanceValue = '3';
-    const allowanceNote = 'Weekly spend jar allowance deposit';
-    console.log(`
-    'handleAllowanceAddSpendJarJr action':
-    spendJarValue: ${allowanceValue}
-    spendJarNote: ${allowanceNote}
-    spendJarTotal: ${spendJarTotal}
-    `);
-    dispatch(
-      setSpendJarTotalJr('Spend jar', allowanceValue, allowanceNote, spendJarTotal),
-    );
-  },
-  handleAllowanceAddSpendJarAj(spendJarTotal) {
-    const allowanceValue = '1.25';
-    const allowanceNote = 'Weekly spend jar allowance deposit';
-    console.log(`
-    'handleAllowanceAddSpendJarAj action':
-    spendJarValue: ${allowanceValue}
-    spendJarNote: ${allowanceNote}
-    spendJarTotal: ${spendJarTotal}
-    `);
-    dispatch(
-      setSpendJarTotalAj('Spend jar', allowanceValue, allowanceNote, spendJarTotal),
-    );
-  },
 });
 
 const SpendJar = connect(mapStateToProps, mapDispatchToProps)(SpendJarConnected);

@@ -24,8 +24,8 @@ const Nav = props => {
       <div className="user__subnav user__subnav--darkgray" />
       <div className="user__subnav user__subnav--lightgray lattice-dollar-sign-bg" />
     </nav>
-  )
-}
+  );
+};
 
 Nav.propTypes = {
   handleSetUserAJWipe: PropTypes.func,

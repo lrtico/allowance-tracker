@@ -1,8 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-import "./AddNote.css";
+import React from 'react';
+import PropTypes from 'prop-types';
+import './AddNote.css';
 
 const AddNote = props => {
+  const { jarValue, handleJarValueChange } = props;
   return (
     <div className="jar__back__note">
       <div className="flex input--highlight">
@@ -10,17 +11,17 @@ const AddNote = props => {
         <input
           maxLength="75"
           type="text"
-          value={props.jarValue}
-          onChange={props.handleJarValueChange}
+          value={jarValue}
+          onChange={handleJarValueChange}
         />
       </div>
     </div>
   );
 };
 
-AddNote.proptypes = {
+AddNote.propTypes = {
   jarValue: PropTypes.string,
-  handleJarValueChange: PropTypes.func
+  handleJarValueChange: PropTypes.func,
 };
 
 export default AddNote;

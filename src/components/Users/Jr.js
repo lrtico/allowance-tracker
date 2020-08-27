@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import SaveJarConnected from '../../components/Jars/SaveJarConnected';
+import SaveJar from '../../containers/SaveJar';
 import SpendJar from '../../containers/SpendJar';
 import ShareJar from '../../containers/ShareJar';
 import LogJarConnected from '../../components/Jars/LogJarConnected';
@@ -12,7 +12,7 @@ const Jr = props => {
   return (
     <div className="jars">
       <div className="flex jars__row">
-        <SaveJarConnected />
+        <SaveJar />
         <SpendJar />
       </div>
       <div className="flex jars__row">

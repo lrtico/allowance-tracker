@@ -4,8 +4,12 @@ import { Provider } from 'react-redux';
 import storeFactory from './store';
 import './index.css';
 import {
-  setSaveJarTotalJr, setSpendJarTotalJr, setShareJarTotalJr,
-  setSaveJarTotalAj, setSpendJarTotalAj, setShareJarTotalAj,
+  setSaveJarTotalJr,
+  setSpendJarTotalJr,
+  setShareJarTotalJr,
+  setSaveJarTotalAj,
+  setSpendJarTotalAj,
+  setShareJarTotalAj,
 } from './store/actions';
 import App from './containers/App';
 
@@ -13,55 +17,86 @@ const rootEl = document.getElementById('root');
 
 const JR = 'allowance-tracker-jr';
 const AJ = 'allowance-tracker-aj';
-const initialState = (localStorage[JR])
-  ? JSON.parse(localStorage[JR])
-  : {};
+const initialState = localStorage[JR] ? JSON.parse(localStorage[JR]) : {};
 
 const saveState = () => {
   const state = JSON.stringify(store.getState());
-  (store.getState().handleUserJR)
-    ? localStorage[JR] = state
-    : localStorage[AJ] = state;
+  store.getState().handleUserJR
+    ? (localStorage[JR] = state)
+    : (localStorage[AJ] = state);
 };
 
 // Weekly allowance deposit
-let week = 6.048e+8;
-const timer = () => {
-  week -= 1;
+const payday = () => {
+  const today = new Date();
+  const dayOfTheWeek = today.getDay();
 
-  if (week === 0) {
-    clearInterval(timer);
-    store.dispatch(
-      setSaveJarTotalAj('Save jar', '1.25', 'AJ Save Jar weekly allowance', store.getState().ajData.saveJarTotalAj),
+  if (dayOfTheWeek === 6) {
+    console.log(
+      `today is the ${dayOfTheWeek} of the week and the date is ${today}`,
     );
     store.dispatch(
-      setSpendJarTotalAj('Spend jar', '0.5', 'AJSpend jar weekly allowance', store.getState().ajData.spendJarTotalAj),
+      setSaveJarTotalAj(
+        'Save jar',
+        '1.25',
+        'AJ Save Jar weekly allowance',
+        store.getState().ajData.saveJarTotalAj,
+      ),
     );
     store.dispatch(
-      setShareJarTotalAj('Share jar', '0.25', 'AJ Share jar weekly allowance', store.getState().ajData.shareJarTotalAj),
+      setSpendJarTotalAj(
+        'Spend jar',
+        '0.5',
+        'AJSpend jar weekly allowance',
+        store.getState().ajData.spendJarTotalAj,
+      ),
     );
     store.dispatch(
-      setSaveJarTotalJr('Save jar', '3', 'JR Save Jar weekly allowance', store.getState().jrData.saveJarTotalJr),
+      setShareJarTotalAj(
+        'Share jar',
+        '0.25',
+        'AJ Share jar weekly allowance',
+        store.getState().ajData.shareJarTotalAj,
+      ),
     );
     store.dispatch(
-      setSpendJarTotalJr('Spend jar', '1.5', 'JR Spend jar weekly allowance', store.getState().jrData.spendJarTotalJr),
+      setSaveJarTotalJr(
+        'Save jar',
+        '3',
+        'JR Save Jar weekly allowance',
+        store.getState().jrData.saveJarTotalJr,
+      ),
     );
     store.dispatch(
-      setShareJarTotalJr('Share jar', '0.50', 'JR Share jar weekly allowance', store.getState().jrData.shareJarTotalJr),
+      setSpendJarTotalJr(
+        'Spend jar',
+        '1.5',
+        'JR Spend jar weekly allowance',
+        store.getState().jrData.spendJarTotalJr,
+      ),
     );
-    week = 6.048e+8;
+    store.dispatch(
+      setShareJarTotalJr(
+        'Share jar',
+        '0.50',
+        'JR Share jar weekly allowance',
+        store.getState().jrData.shareJarTotalJr,
+      ),
+    );
   } else {
-    localStorage.setItem('payday', week - 1);
+    console.log(
+      `today is not Saturday the ${dayOfTheWeek} of the week and the date is ${today}`,
+    );
   }
 };
-
-setInterval(timer, 1000);
 
 const store = storeFactory(initialState);
 
 store.subscribe(saveState);
 
 window.store = store;
+
+setInterval(payday, 8.64e7);
 
 render(
   <Provider store={store}>

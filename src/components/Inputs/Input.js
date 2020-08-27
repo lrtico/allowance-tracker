@@ -1,15 +1,26 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const Input = props => {
-  console.log("Input props, ", props);
+  const {
+    maximumLength, inputType, jarValue, handleJarValueChange,
+  } = props;
+  console.log('Input props, ', props);
   return (
     <input
-      maxLength={props.maximumLength}
-      type={props.inputType}
-      value={props.jarValue}
-      onChange={props.handleJarValueChange}
+      maxLength={maximumLength}
+      type={inputType}
+      value={jarValue}
+      onChange={handleJarValueChange}
     />
   );
+};
+
+Input.propTypes = {
+  maximumLength: PropTypes.number,
+  inputType: PropTypes.string,
+  jarValue: PropTypes.number,
+  handleJarValueChange: PropTypes.func,
 };
 
 export default Input;

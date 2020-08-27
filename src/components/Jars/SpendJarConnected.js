@@ -141,8 +141,6 @@ SpendJarConnected.propTypes = {
   spendJarTotalJr: PropTypes.number,
   handleUserAJ: PropTypes.bool,
   handleUserJR: PropTypes.bool,
-  handleAllowanceAddSpendJarAj: PropTypes.func,
-  handleAllowanceAddSpendJarJr: PropTypes.func,
 };
 
 export default SpendJarConnected;
